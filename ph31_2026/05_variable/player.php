@@ -5,19 +5,30 @@
  */
 
 // TODO: 変数 name : 文字列
+$name = "aiueo";
 
 // TODO: 変数 level : 整数
+$level = 50;
 
 // TODO: 変数 exp_rate : 小数点を含む数値
+$exp_rate = 1.5;
 
 // TODO: 変数 is_active : 真偽値 (true/false)
+$is_active = true;
 
 // TODO: 変数 last_login : null (値なし)
+$last_login = null;
 
 // TODO: 変数 items : 配列 (複数のアイテムを格納)
+$items = ["コーヒー", "ばなな", "りんご"];
 
 // TODO: 変数 status : 連想配列 (キーと値のペアでステータスを格納)
 // 例: "hp" => 100, "mp" => 50, "job" => "戦士"
+$status = [
+    "hp" => 100,
+    "mp" => 50,
+    "job" => "戦士"
+];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
