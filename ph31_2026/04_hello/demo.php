@@ -50,3 +50,5 @@ $version = phpversion();
 </body>
 
 </html>
+
+<!--  設定をすればターミナルで実行することも出来る -->
