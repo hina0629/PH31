@@ -4,6 +4,8 @@
 $message = "こんにちは";
 
 // TODO: PHPのバージョンを取得: phpversion()
+$version = phpversion();
+
 // TODO: 複数コメント
 ?>
 
