@@ -4,6 +4,9 @@
 // TODO: PHPのバージョンを取得: phpversion()
 // TODO: 複数コメント
 ?>
+
+<!-- fatal error(フェイタルエラー): 致命的なエラー。実行したプログラムが途中で止まる。 -->
+
 <!-- ここからHTMLレンダリング -->
 <!DOCTYPE html>
 <html lang="ja">
