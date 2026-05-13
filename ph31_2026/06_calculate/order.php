@@ -58,8 +58,8 @@ $amount1 = $price1 * $quantity1;
 $amount2 = $price2 * $quantity2;
 $amount3 = $price3 * $quantity3;
 
-// 通常合計価格
-$total = 0;
+// TODO: 通常合計価格
+$total = $amount1 + $amount2 + $amount3;
 
 // 三項演算
 // TODO: 会員の場合、割引率を DISCOUNT_RATE に設定、そうでない場合 0
