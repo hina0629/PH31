@@ -51,6 +51,7 @@ $isMember = true;
 $quantity1++;
 
 // TODO: quantity3 をデクリメント
+$quantity3--;
 
 // TODO: amount1, amount2, amount3に金額を代入
 $amount1 = 0;
