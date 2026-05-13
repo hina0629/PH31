@@ -27,9 +27,9 @@ $image2 = "images/orange.webp";
 $image3 = "images/tea.webp";
 
 // price1, price2, price3に価格を代入
-$price1 = 120;
-$price2 = 150;
-$price3 = 130;
+$price1 = 620;
+$price2 = 650;
+$price3 = 630;
 
 // quantity1, quantity2, quantity3に個数を代入
 $quantity1 = 1;
