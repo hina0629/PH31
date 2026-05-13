@@ -76,7 +76,7 @@ $discount = $total * $discountRate;
 $totalWithDiscount = $total - $discount;
 
 // TODO: ポイント計算：小数点は floor() で切り捨て
-$point = 0;
+$point = floor($totalWithDiscount * POINT_RATE);
 ?>
 
 <!DOCTYPE html>
