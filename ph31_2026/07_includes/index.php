@@ -5,7 +5,7 @@
 
 // require_once: ファイルが存在しないと Fatal Error → 必須ファイルに使う
 // TODO: includes/config.php を読み込む
-
+require_once 'includes/config.php'
 
 // ２回目は無視される
 
