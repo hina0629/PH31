@@ -18,14 +18,14 @@ $postedName = $_POST['user_name'] ?? '';
 
 // TODO: $_SERVER: サーバーや実行環境の情報
 // サーバー名:$_SERVER['SERVER_NAME']
-$serverName = "";
+$serverName = $_SERVER['SERVER_NAME'];
 // ユーザーエージェント: $_SERVER['HTTP_USER_AGENT']
-$userAgent = "";
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
 // リクエスト方法: $_SERVER['REQUEST_METHOD']
 // ここを書かないとPOST表示されない
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 // クライアントのIPアドレス: $_SERVER['REMOTE_ADDR']
-$remoteAddr = "";
+$remoteAddr = $_SERVER['REMOTE_ADDR'];
 ?>
 
 <!DOCTYPE html>
