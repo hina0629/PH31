@@ -48,6 +48,7 @@ $isMember = true;
 
 // 演算
 // TODO: quantity1 をインクリメント
+$quantity1++;
 
 // TODO: quantity3 をデクリメント
 
