@@ -11,6 +11,10 @@ $full_name = $last_name . " " . $first_name;
 // TODO: テンプレートリテラル: last_name と first_name の間に半角スペースを入れる
 $full_name = "$last_name $first_name";
 // $full_name = "{$last_name} {$first_name}" でもOK
+// JavaScriptで書くと、
+// full_name = `${last_name} ${first_name}`;
+// Pythonで書くと、
+// full_name = f"{last_name} {first_name}"
 
 // drink1, drink2, drink3に商品名を代入
 $drink1 = "コーラ";
