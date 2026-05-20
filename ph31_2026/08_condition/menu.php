@@ -59,6 +59,7 @@ $user = $isAuth ? $testUser : null;
                 <!-- Auth Section -->
                 <div class="flex items-center gap-4">
                     <!-- TODO: コロン構文 if: isAuth で分岐 -->
+                    <?php if ($isAuth): ?>
                         <!-- Logged In -->
                         <div class="flex items-center gap-3 pl-4 border-l border-slate-200">
                             <div class="text-right hidden sm:block">
@@ -68,13 +69,13 @@ $user = $isAuth ? $testUser : null;
                             <img src="<?= $user['avatar'] ?>" alt="User" class="w-9 h-9 rounded-full ring-2 ring-indigo-50 ring-offset-2">
                             <a href="?auth=0" class="text-xs font-bold text-slate-400 hover:text-rose-500 transition-colors">ログアウト</a>
                         </div>
-
+                    <?php else: ?>
                         <!-- Not Logged In -->
                         <div class="flex items-center gap-3">
                             <a href="?auth=1" class="text-sm font-semibold text-slate-600 hover:text-slate-900">ログイン</a>
                             <a href="?auth=1" class="text-sm font-bold bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 shadow-md shadow-indigo-100 transition-all">新規登録</a>
                         </div>
-
+                    <?php endif ?> 
                 </div>
             </div>
         </div>
