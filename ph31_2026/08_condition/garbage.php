@@ -3,12 +3,12 @@
 $targetDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
 
 // TODO: 曜日インデックス（0:日 〜 6:土）
-$weekIndex = 0;
+$weekIndex = $targetDate->format('w');
 
 // 日本語の曜日名を取得 (IntlDateFormatterを使用)
 $formatter = new IntlDateFormatter('ja_JP', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'E');
 // TODO: 曜日フォーマット
-$weekDay = "";
+$weekDay = $formatter->format($targetDate);
 
 // ゴミ出しのルールを定義
 $burnable = ["is_garbage" => true, "label" => "燃えるゴミ", "color" => "bg-rose-500"];
