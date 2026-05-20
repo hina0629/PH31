@@ -9,20 +9,23 @@ $canPay = $charge >= $payment;
 $status = "success";
 
 // TODO: if 文
-// 1. isMaintenance の場合
+if ($isMaintenance) {
+    // 1. isMaintenance の場合
     $status = "maintenance";
     $message = "システムメンテナンス中";
     $subMessage = "ただいま決済機能をご利用いただけません。";
-
-// 2. 決済できない場合
+} else if (!$canPay) {
+    // 2. 決済できない場合
     $status = "error";
     $message = "残高が不足しています";
     $subMessage = "チャージしてから再度お試しください。";
-
-// 3. それ以外の場合
+} else {
+    // 3. それ以外の場合
     $status = "success";
     $message = "決済可能です";
     $subMessage = "「支払う」ボタンを押して完了してください。";
+}
+
 
 // TODO: match() で status によってレイアウト設定
     // 'success' => ['color' => 'indigo', 'icon' => 'M5 13l4 4L19 7'],
