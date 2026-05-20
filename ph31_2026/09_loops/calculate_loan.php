@@ -195,7 +195,7 @@ $remaining_months = $month_count % 12;
                                     <?php foreach ($values as $value) : ?>
                                         <tr class="hover:bg-slate-50/50 transition-colors">
                                             <!-- TODO: 経過年数を表示 -->
-                                            <td class="px-8 py-4 font-bold text-slate-400 italic"> 年目</td>
+                                            <td class="px-8 py-4 font-bold text-slate-400 italic"><?= $value['year'] ?> 年目</td>
                                             <!-- TODO: 支払い回数を表示 -->
                                             <td class="px-8 py-4 font-medium"> 回目</td>
                                             <!-- TODO: 利息額を表示 -->
