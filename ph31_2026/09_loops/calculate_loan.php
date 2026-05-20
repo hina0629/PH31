@@ -199,7 +199,7 @@ $remaining_months = $month_count % 12;
                                             <!-- TODO: 支払い回数を表示 -->
                                             <td class="px-8 py-4 font-medium"><?= $value['month'] ?> 回目</td>
                                             <!-- TODO: 利息額を表示 -->
-                                            <td class="px-8 py-4 text-right text-rose-400">&yen;</td>
+                                            <td class="px-8 py-4 text-right text-rose-400">&yen;<?= $value['interest'] ?></td>
                                             <!-- TODO: ローン残高を表示 -->
                                             <td class="px-8 py-4 text-right font-bold text-slate-900">&yen;</td>
                                         </tr>
