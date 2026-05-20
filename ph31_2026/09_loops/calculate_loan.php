@@ -201,7 +201,7 @@ $remaining_months = $month_count % 12;
                                             <!-- TODO: 利息額を表示 -->
                                             <td class="px-8 py-4 text-right text-rose-400">&yen;<?= $value['interest'] ?></td>
                                             <!-- TODO: ローン残高を表示 -->
-                                            <td class="px-8 py-4 text-right font-bold text-slate-900">&yen;</td>
+                                            <td class="px-8 py-4 text-right font-bold text-slate-900">&yen;<?= $value['loan'] ?></td>
                                         </tr>
                                     <?php endforeach ?>
                                 </tbody>
