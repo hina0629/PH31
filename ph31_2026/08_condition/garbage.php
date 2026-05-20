@@ -1,6 +1,6 @@
 <?php
 // TODO: 日付オブジェクトの生成（パラメータがあればその日、なければ今日）
-// $targetDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
+$targetDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
 
 // TODO: 曜日インデックス（0:日 〜 6:土）
 $weekIndex = 0;
