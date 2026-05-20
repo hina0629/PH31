@@ -115,9 +115,9 @@ $colors = [
             <!-- Numbers Grid -->
             <div class="grid grid-cols-5 gap-2">
                 <!-- TODO: $rows で繰り返し -->
-                <?php foreach ([] as $row): ?>
+                <?php foreach ($rows as $row): ?>
                     <!-- TODO: $row で繰り返し -->
-                    <?php foreach ([] as $value): ?>
+                    <?php foreach ($row as $value): ?>
                         <?php
                         $isFree = ($value === 'FREE');
                         ?>
