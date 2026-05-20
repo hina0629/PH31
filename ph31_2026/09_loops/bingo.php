@@ -132,6 +132,7 @@ $colors = [
                                     <span class="absolute bottom-1 text-[8px] font-black uppercase tracking-widest opacity-50">Free</span>
                                 <?php else: ?>
                                     <!-- TODO: $value を表示 -->
+                                    <?= $value ?>
                                 <?php endif; ?>
                             </div>
                         </div>
