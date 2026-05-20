@@ -19,10 +19,12 @@ $ranges = [
 // 各列の番号を格納する配列
 $columns = [];
 // TODO: 各列の番号の範囲をループ: foreach($ranges as $label => $range)
-// 各列の番号をシャッフル
-// shuffle($range);
-// 5つ選ぶ
-// $columns[$label] = array_slice($range, 0, 5);
+foreach ($ranges as $key => $range) {
+    // 各列の番号をシャッフル
+    shuffle($range);
+    // 5つ選ぶ
+    $columns[$key] = array_slice($range, 0, 5);
+};
 
 // 中央（N列の3番目）を FREE に
 $columns['N'][2] = 'FREE';
