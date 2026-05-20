@@ -3,7 +3,7 @@
 $targetDate = isset($_GET['date']) ? new DateTime($_GET['date']) : new DateTime();
 
 // TODO: 曜日インデックス（0:日 〜 6:土）
-$weekIndex = $targetDate->format('w');
+$weekIndex = (int)$targetDate->format('w');
 
 // 日本語の曜日名を取得 (IntlDateFormatterを使用)
 $formatter = new IntlDateFormatter('ja_JP', IntlDateFormatter::NONE, IntlDateFormatter::NONE, null, null, 'E');
