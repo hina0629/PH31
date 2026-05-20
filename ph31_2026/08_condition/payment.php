@@ -93,8 +93,10 @@ $balancePercent = min(100, max(0, ($charge / ($payment ?: 1)) * 50)); // 簡易�
                         <div class="h-full bg-<?= $config['color'] ?>-500 transition-all duration-1000" style="width: <?= $canPay ? '100%' : '30%' ?>"></div>
                     </div>
                     <!-- TODO: コロン構文 if: canPay と isMaintenance をチェック -->
+                    <?php if (!$canPay): ?>
                         <p class="text-[10px] text-rose-500 font-bold text-right">あと &yen;<?= number_format($payment - $charge) ?> 不足しています</p>
-                </div>
+                    <?php endif ?>
+                    </div>
 
                 <!-- Action Button -->
                 <button class="w-full py-4 rounded-2xl bg-<?= $config['color'] ?>-600 text-white font-bold shadow-lg shadow-<?= $config['color'] ?>-100 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none" <?= (!$canPay || $isMaintenance) ? 'disabled' : '' ?>>
