@@ -18,7 +18,7 @@ if ($pay_by_month <= $first_month_interest) {
 } else {
     // 支払い計算ループ（最大1000ヶ月 = 約83年で制限）
     // TODO: while で繰り返し: 条件式を修正（$loan > 0 && $month_count < 1000）
-    while (false) {
+    while ($loan > 0 && $month_count < 1000) {
         // 月数カウンターを1増やす
         $month_count++;
         // 利息計算: 年利を12で割って月利を計算し、ローン残高に掛ける
@@ -34,11 +34,11 @@ if ($pay_by_month <= $first_month_interest) {
             // 通常月は月々の支払額を支払う
             $payment = $pay_by_month;
             // TODO: ローン残高から支払額を引く
-            $loan = 0;
+            $loan -= ($payment - $interest);
         }
 
         // TODO: 利息合計を計算
-        $total_interest = 0;
+        $total_interest += $interest;
 
         // 12ヶ月ごと、または最終月のみデータを保存（全データだと重くなるため）
         if ($month_count % 12 == 0 || $loan <= 0) {
