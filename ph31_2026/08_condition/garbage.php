@@ -19,7 +19,11 @@ $none = ["is_garbage" => false, "label" => "回収なし", "color" => "bg-slate-
 // 1, 3 → 月、水 → 燃えるゴミ
 // 5 → 金 → 燃えないゴミ
 // 2, 4, 6, 0 → 火、木、土、日 → 回収なし
-$garbage = $none; 
+$garbage = match($weekIndex) {
+    1, 3 => $burnable,
+    5 => $unburnable,
+    default => $none,
+}; 
 
 // レイアウト用の色設定
 $statusColor = $garbage['color'];
