@@ -26,11 +26,12 @@ if ($isMaintenance) {
     $subMessage = "「支払う」ボタンを押して完了してください。";
 }
 
-
 // TODO: match() で status によってレイアウト設定
-    // 'success' => ['color' => 'indigo', 'icon' => 'M5 13l4 4L19 7'],
-    // 'error'   => ['color' => 'rose', 'icon' => 'M6 18L18 6M6 6l12 12'],
-    // 'maintenance' => ['color' => 'amber', 'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+$config = match($status) {
+    'success' => ['color' => 'indigo', 'icon' => 'M5 13l4 4L19 7'],
+    'error'   => ['color' => 'rose', 'icon' => 'M6 18L18 6M6 6l12 12'],
+    'maintenance' => ['color' => 'amber', 'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+};
 
 // 残高の割合（ゲージ用）
 $balancePercent = min(100, max(0, ($charge / ($payment ?: 1)) * 50)); // 簡易的な計算
