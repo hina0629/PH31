@@ -86,6 +86,8 @@ if (!$user) {
                     <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">自己紹介</h2>
                     <p class="text-slate-600 leading-relaxed font-medium">
                         <!-- TODO: 自己紹介を表示: nl2br() htmlspecialchars() を使用 -->
+                        <!-- 改行コードがあったら勝手にbrタグを入れてくれる -->
+                        <?= nl2br($user['bio']) ?>
                     </p>
                 </div>
 

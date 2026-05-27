@@ -10,7 +10,7 @@ $users = [
         "display_name" => "Chris Johnson",
         "email" => "chris@example.com",
         "role" => "Administrator",
-        "bio" => "Webデザイナー兼開発者。UI/UXデザインとPHPが得意です。",
+        "bio" => "Webデザイナー兼開発者。\nUI/UXデザインとPHPが得意です。",
         "avatar" => "1.jpg"
     ],
     [
