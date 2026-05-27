@@ -78,7 +78,7 @@ if (!$user) {
                     <!-- TODO: ロールを表示 -->
                     <span class="px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold ring-1 ring-indigo-100"><?= $user['role'] ?></span>
                     <!-- TODO: IDを表示 -->
-                    <span class="px-4 py-1.5 bg-slate-50 text-slate-500 rounded-full text-xs font-bold ring-1 ring-slate-100">ID: </span>
+                    <span class="px-4 py-1.5 bg-slate-50 text-slate-500 rounded-full text-xs font-bold ring-1 ring-slate-100">ID: <?= $user['id'] ?></span>
                 </div>
 
                 <!-- Bio Section -->
