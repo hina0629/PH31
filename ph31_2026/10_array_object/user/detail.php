@@ -100,7 +100,7 @@ if (!$user) {
                         <div class="overflow-hidden">
                             <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Email</p>
                             <!-- TODO: emailを表示 -->
-                            <p class="text-sm font-bold text-slate-900 truncate"></p>
+                            <p class="text-sm font-bold text-slate-900 truncate"><?= $user['email'] ?></p>
                         </div>
                     </div>
                 </div>
