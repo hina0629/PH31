@@ -62,7 +62,7 @@ if (!$user) {
                 <!-- Avatar -->
                 <div class="relative -mt-16 mb-6">
                     <!-- TODO: アバター画像を表示 -->
-                    <img src="" alt="" class="w-32 h-32 rounded-3xl border-4 border-white shadow-lg object-cover bg-white">
+                    <img src="../images/users/<?= $user['avatar'] ?>" alt="<?= $user['avatar'] ?>" class="w-32 h-32 rounded-3xl border-4 border-white shadow-lg object-cover bg-white">
                 </div>
 
                 <!-- Profile Info -->
