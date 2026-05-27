@@ -23,9 +23,9 @@ function findUser(int $id)
 {
     require_once "data/users.php";
     // TODO: array_column で id の配列を作成
-    $ids = [];
+    $ids = array_column($users, "id");
     // TODO:    array_search でインデックスを検索
-    $index = 0;
+    $index = array_search($id, $ids);
     // インデックスが見つかった場合はユーザー情報を返し、見つからない場合は null を返す
     return ($index !== false) ? $users[$index] : null;
 }
@@ -38,8 +38,11 @@ function findProduct(int $id)
     require_once "data/products.php";
     $ids = [];
     $index = false;
-    // $ids = array_column($products, "id");
-    // $index = array_search($id, $ids);
+    // 商品一覧から id の配列を作成
+    $ids = array_column($products, "id");
+    // id の配列から、指定された $id のインデックスを検索
+    $index = array_search($id, $ids);
+    // index から商品を取得
     return ($index !== false) ? $products[$index] : null;
 }
 
@@ -63,7 +66,7 @@ function calculatePoint(int $amount, float $rate = POINT_RATE): int
  * メッセージの作成（無名関数 / クロージャ）
  */
 $formatGreeting = function (string $name) {
-    // return "{$name}さん、この商品を購入しますか？";
+    return "{$name}さん、この商品を購入しますか？";
 };
 
 /**
@@ -81,11 +84,11 @@ $exclTaxPrice = 0;
 $earnedPoints = 0;
 if ($user && $product) {
     // TODO: calculateSubtotal関数を使用して、合計金額を計算
-    $subtotal = 0;
+    $subtotal = calculateSubtotal($product['price'], $quantity);
     // TODO: $getExclTaxPrice を使用して、税込価格から税抜価格を計算
-    $exclTaxPrice = 0;
+    $exclTaxPrice = $getExclTaxPrice($product['price']);
     // TODO: calculatePoint関数を使用して、獲得予定ポイントを計算
-    $earnedPoints = 0;
+    $earnedPoints = calculatePoint($subtotal);
 }
 ?>
 
