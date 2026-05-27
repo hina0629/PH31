@@ -1,5 +1,6 @@
 <?php
 // 外部データの読み込み
+// ＿DIR＿ マジック変数：現在のディレクトリ
 require_once __DIR__ . '/data/users.php';
 ?>
 
