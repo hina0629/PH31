@@ -11,20 +11,20 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $user = null;
 
 // 1. foreach の場合
-foreach ($users as $user) {
-    if ($user['id'] === $id) {
-        $user = $user;
-        break;
-    }
-}
+// foreach ($users as $user) {
+//     if ($user['id'] === $id) {
+//         $user = $user;
+//         break;
+//     }
+// }
 
 // 2. array_search() の場合
 // $key = array_search($id, array_column($users, 'id'), true);
 // $user = $key !== false ? $users[$key] : null;
 
 // 3. array_filter() の場合
-// $user = array_filter($users, fn($user) => $user['id'] === $id);
-// $user = $user ? reset($user) : null;
+$user = array_filter($users, fn($user) => $user['id'] === $id);
+$user = $user ? reset($user) : null;
 
 // ユーザーが見つからない場合は一覧に戻すかエラーを表示
 if (!$user) {
