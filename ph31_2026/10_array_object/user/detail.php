@@ -1,20 +1,22 @@
 <?php
+// モックデータで強引にデータ検索
 // データの読み込み
 require_once 'data/users.php';
 
 // URLパラメータからIDを取得
+// $_GET：URLから取得できる
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 該当するユーザーを検索
 $user = null;
 
 // 1. foreach の場合
-// foreach ($users as $user) {
-//     if ($user['id'] === $id) {
-//         $user = $user;
-//         break;
-//     }
-// }
+foreach ($users as $user) {
+    if ($user['id'] === $id) {
+        $user = $user;
+        break;
+    }
+}
 
 // 2. array_search() の場合
 // $key = array_search($id, array_column($users, 'id'), true);
@@ -66,7 +68,7 @@ if (!$user) {
                 <!-- Profile Info -->
                 <div class="mb-8">
                     <!-- TODO: ユーザー名を表示 -->
-                    <h1 class="text-3xl font-black tracking-tight mb-1"></h1>
+                    <h1 class="text-3xl font-black tracking-tight mb-1"><?= $user['display_name'] ?></h1>
                     <!-- TODO: アカウント名を @+アカウント名で表示 -->
                     <p class="text-slate-400 font-bold text-sm uppercase tracking-widest"></p>
                 </div>
