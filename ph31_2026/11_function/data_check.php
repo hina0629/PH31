@@ -11,11 +11,11 @@ $testValue = $_GET['v'] ?? '  Hello, PHP Tokyo!  ';
 // 1. 変数・データチェック関数
 // TODO: isset, empty, is_string, is_numeric, is_null関数を使用
 $results['check'] = [
-    'isset'    => false,
-    'empty'    => false,
-    'is_string' => false,
-    'is_numeric' => false,
-    'is_null'   => false,
+    'isset'    => isset($testValue),
+    'empty'    => empty($testValue),
+    'is_string' => is_string($testValue),
+    'is_numeric' => is_numeric($testValue),
+    'is_null'   => is_null($testValue),
 ];
 
 // 2. 文字列操作（マルチバイト対応）
