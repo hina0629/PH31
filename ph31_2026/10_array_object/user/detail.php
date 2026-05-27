@@ -70,7 +70,7 @@ if (!$user) {
                     <!-- TODO: ユーザー名を表示 -->
                     <h1 class="text-3xl font-black tracking-tight mb-1"><?= $user['display_name'] ?></h1>
                     <!-- TODO: アカウント名を @+アカウント名で表示 -->
-                    <p class="text-slate-400 font-bold text-sm uppercase tracking-widest"></p>
+                    <p class="text-slate-400 font-bold text-sm uppercase tracking-widest">@<?= $user['account_name'] ?></p>
                 </div>
 
                 <!-- Roles & Tags -->
