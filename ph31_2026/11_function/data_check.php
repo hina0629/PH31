@@ -25,25 +25,25 @@ $trimmedString = trim($rawString);
 // TODO: strlen, mb_strlen, strtoupper, strtolower関数を使用
 $results['string'] = [
     'raw' => $rawString,
-    'strlen' => 0,
-    'mb_strlen' => 0,
+    'strlen' => strlen($rawString),
+    'mb_strlen' => mb_strlen($rawString),
     'trimmed' => $trimmedString,
-    'upper' => "",
-    'lower' => "",
+    'upper' => strtoupper($trimmedString),
+    'lower' => strtolower($trimmedString),
 ];
 
 // 3. 部分文字列の抽出 (substr)
 // TODO: substr, mb_substr関数を使用して、文字列の一部を抽出
 $results['substr'] = [
-    'substr_5' => "",   // 先頭から5文字
-    'mb_substr_2' => "",  // 先頭から2文字（マルチバイト対応）
+    'substr_5' => substr($trimmedString, 0, 5),   // 先頭から5文字
+    'mb_substr_2' => mb_substr($trimmedString, 0, 2),  // 先頭から2文字（マルチバイト対応）
 ];
 
 // 4. 置換・検索
 // TODO: str_replace, mb_strpos関数を使用して、文字列の置換と検索を行う
 $results['replace'] = [
-    // 'replace' => str_replace('PHP', '🐘', $trimmedString),
-    // 'pos' => mb_strpos($trimmedString, 'PHP'), // 文字の位置を検索
+    'replace' => str_replace('PHP', '🐘', $trimmedString),
+    'pos' => mb_strpos($trimmedString, 'PHP'), // 文字の位置を検索
 ];
 
 // 5. 数値操作
@@ -53,10 +53,10 @@ $number = $isNumeric ? $testValue : 0;
 // TODO: number_format, ceil, floor, round関数を使用して、数値のフォーマットと丸め処理
 $results['number'] = [
     'raw' => $number,
-    'format' => "",
-    'ceil' => 0,
-    'floor' => 0,
-    'round' => 0,
+    'format' => number_format($number),
+    'ceil' => ceil($number),
+    'floor' => floor($number),
+    'round' => round($number),
 ];
 
 ?>
@@ -169,6 +169,10 @@ $results['number'] = [
                     変換・抽出
                 </h2>
                 <div class="space-y-4">
+                    <div>
+                        <span class="text-sm font-black text-slate-400 uppercase block mb-2">substr(0, 5) - 先頭5バイト</span>
+                        <code class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-lg text-slate-700"><?= htmlspecialchars($results['substr']['substr_5']) ?></code>
+                    </div>
                     <div>
                         <span class="text-sm font-black text-slate-400 uppercase block mb-2">mb_substr(0, 2) - 2文字抽出</span>
                         <code class="text-sm font-bold bg-slate-100 px-3 py-1 rounded-lg text-slate-700"><?= htmlspecialchars($results['substr']['mb_substr_2']) ?></code>
