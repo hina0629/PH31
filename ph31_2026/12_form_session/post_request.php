@@ -6,17 +6,21 @@
  */
 
 // TODO: セッションの開始
+session_start();
+// セッションIDの再生成（セキュリティ向上のため）
+session_regenerate_id(true);
 
 // セッションから各種データを取得
 // TODO: previous_post
-$posts = [];
+$posts = $_SESSION['previous_post'] ?? [];
 // TODO: status
-$status = "";
+$status = $_SESSION['status'] ?? '';
 // TODO: authUser
-$authUser = [];
+$authUser = $_SESSION['authUser'] ?? null;
 $message = flashMessage();
 
-// TODO: フラッシュメッセージの削除 (リロード時に消えるように): unset() status
+// TODO: ステータスの削除 (リロード時に消えるように): unset() status
+unset($_SESSION['status']);
 
 // 表示用のデータ
 $email = $posts['email'] ?? '';
