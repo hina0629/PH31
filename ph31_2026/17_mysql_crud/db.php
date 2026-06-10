@@ -1,6 +1,6 @@
 <?php
 // TODO: 設定ファイル env.php を読み込む
-require_once '';
+require_once 'env.php';
 
 // 変数設定
 $db_connection = DB_CONNECTION;
