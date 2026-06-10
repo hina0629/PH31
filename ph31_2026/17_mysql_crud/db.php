@@ -12,7 +12,7 @@ $db_password   = DB_PASSWORD;
 
 // TODO: DSN（Data Source Name）の設定
 // ヒント: "{接続方式}:dbname={DB名};host={ホスト};port={ポート};charset=utf8;"
-$dsn = "______:dbname=______;host=______;port=______;charset=utf8;";
+$dsn = "{$db_connection}:dbname={$db_name};host={$db_host};port={$db_port};charset=utf8mb4;";
 
 // PDOオブジェクトの初期化
 $pdo = null;
