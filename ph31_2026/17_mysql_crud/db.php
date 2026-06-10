@@ -20,7 +20,7 @@ $pdo = null;
 try {
     // TODO: PDO インスタンスを生成する
     // ヒント: new PDO(DSN文字列, ユーザー名, パスワード)
-    $pdo = null;
+    $pdo = new PDO($dsn, $db_user, $db_password);
 
     // TODO: 以下の2つの属性を設定する（コメントを外す）
     //   1. エラーモードを「例外を投げる」モードにする
