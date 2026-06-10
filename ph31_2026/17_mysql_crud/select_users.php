@@ -4,7 +4,9 @@ require_once './lib/Database.php';
 
 use Lib\Database;
 
-$users = get();
+// http://localhost/..../select_users.php?limit=5 のように、URLクエリパラメータ limit で取得件数を指定できるようにする
+$limit = $_GET['limit'] ?? 50;
+$users = get($limit);
 
 /**
  * ユーザデータを取得する関数
@@ -13,26 +15,25 @@ function get($limit = 50)
 {
     // TODO: DB接続：Database クラスのシングルトンメソッドで $pdo を取得
     // ヒント: クラス名::getInstance()
-    $pdo = null;
+    $pdo = Database::getInstance();
 
     // TODO : users テーブルから件数を絞って全カラムを取得する SELECT 文
     // LIMIT にはプレースホルダー :limit を使う
-    $sql = "";
+    $sql = "SELECT * FROM users LIMIT :limit";
 
     // TODO : プリペアドステートメントを作成
     // ヒント: $pdo->prepare($sql)
-    $stmt = null;
+    $stmt = $pdo->prepare($sql);
 
     // TODO : :limit プレースホルダーに値をバインド（コメントを外す）
-    // $stmt->bindValue(':limit', (int)$limit, null);
+    $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
 
     // TODO : users テーブルから最大件数を指定して取得する SQL
     // SQL: SELECT * FROM users LIMIT :limit
-    // $stmt->execute()
+    $stmt->execute();
 
     // TODO : 全件を連想配列で取得して return
-    // $stmt->fetchAll(PDO::FETCH_ASSOC)
-    return null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>

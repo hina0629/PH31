@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $_POST['キー名'] ?? '' で各値を取得
     // キー: account_name, email, display_name, password
     $posts = [
-        'account_name' => null,
-        'email'        => null,
-        'display_name' => null,
-        'password'     => null,
+        'account_name' => $_POST['account_name'],
+        'email'        => $_POST['email'],
+        'display_name' => $_POST['display_name'],
+        'password'     => $_POST['password'],
     ];
 
     if (empty($posts['account_name']) || empty($posts['email']) || empty($posts['password'])) {
@@ -39,14 +39,14 @@ function insert($posts)
     try {
         // TODO: パスワードをハッシュ化
         // password_hash(元のパスワード, PASSWORD_DEFAULT)
-        $posts['password'] = null;
+        $posts['password'] = password_hash($posts['password'], PASSWORD_DEFAULT);
 
         // DB接続
         $pdo = Database::getInstance();
 
         // TODO: INSERT文
-        $sql = "";
-        // $sql = "INSERT INTO users (account_name, email, display_name, password) VALUES (:account_name, :email, :display_name, :password)";
+        $sql = "INSERT INTO users (account_name, email, display_name, password) 
+                VALUES (:account_name, :email, :display_name, :password)";
 
         // SQLを設定して、プリペアードステートメントを生成
         $stmt = $pdo->prepare($sql);

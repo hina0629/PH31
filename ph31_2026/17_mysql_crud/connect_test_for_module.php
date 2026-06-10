@@ -10,7 +10,7 @@ use Lib\Database;
 // PDOインスタンスを取得
 try {
     // TODO: Database::getInstance() を呼び出して PDO インスタンスを取得する
-    $pdo = null;
+    $pdo = Database::getInstance();
     $is_connected = $pdo instanceof PDO;
 } catch (Exception $e) {
     $is_connected = false;
@@ -37,8 +37,6 @@ $description = '自作の Database クラス（シングルトンパターン）
 </head>
 
 <body class="bg-slate-50 text-slate-800 leading-relaxed antialiased">
-
-    <?php include 'components/nav.php'; ?>
 
     <main class="max-w-4xl mx-auto px-6 py-12">
 
