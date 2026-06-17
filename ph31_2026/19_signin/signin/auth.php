@@ -32,7 +32,8 @@ if (empty($auth_user['id'])) {
     header('Location: ./input.php');
     exit;
 } else {
-    // TODO: 認証成功時はセッションにユーザデータを保存: APP_KEY の signin
+    // TODO: 認証成功時はセッションにユーザデータを保存: APP_KEY > auth_user
+    $_SESSION[APP_KEY]['auth_user'] = $auth_user;
 
     // ユーザトップページにリダイレクト: home/
     header('Location: ../home/');
