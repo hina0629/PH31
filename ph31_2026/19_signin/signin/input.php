@@ -3,10 +3,11 @@
 require_once "../app.php";
 
 // TODO: 前回の入力値を復元: signin
-$form = $_SESSION[APP_KEY]['signin'] ??  [];
+$form = $_SESSION[APP_KEY]['signin'] ?? [];
 
 // TODO: エラーメッセージを復元: error
-$error = null;
+$error = $_SESSION[APP_KEY]['error'] ?? null;
+
 // TODO: フラッシュメッセージとして削除
 ?>
 
