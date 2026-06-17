@@ -81,7 +81,7 @@ class User extends Model
         if (empty($data)) return;
         try {
             // TODO: パスワードのハッシュ化
-            $data['password'] = null;
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             // DB接続
             $pdo = Database::getInstance();
             // SQL作成
