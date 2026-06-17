@@ -23,8 +23,8 @@ class AuthUser extends User
     public static function clear()
     {
         // TODO: セッションからユーザ情報を削除
-        // if (isset($_SESSION[self::$key])) {
-        //     unset($_SESSION[self::$key]);
-        // }
+        if (isset($_SESSION[self::$key])) {
+            unset($_SESSION[self::$key]);
+        }
     }
 }
