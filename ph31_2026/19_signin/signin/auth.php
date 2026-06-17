@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // TODO: POSTデータをサニタイズ
-$posts = sanitize($_POST)
+$posts = sanitize($_POST);
 
 // TODO: セッションにPOSTデータを登録
-$_SESSION[APP_KEY]['signin'] = null;
+$_SESSION[APP_KEY]['signin'] = $posts;
 
 // TODO: 入力されたアカウント名とパスワードを取得
 $account_name = "";
