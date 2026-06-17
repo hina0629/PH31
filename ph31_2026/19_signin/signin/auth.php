@@ -33,6 +33,7 @@ if (empty($auth_user['id'])) {
     exit;
 } else {
     // TODO: 認証成功時はセッションにユーザデータを保存: APP_KEY > auth_user
+    // 本来はpasswordはunsetしたほうがいい
     $_SESSION[APP_KEY]['auth_user'] = $auth_user;
 
     // ユーザトップページにリダイレクト: home/
