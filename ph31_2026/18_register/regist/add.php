@@ -31,7 +31,7 @@ if (!empty($user_exists['id'])) {
 // User クラスのインスタンスを生成
 $user = new User();
 // TODO: User モデルの insert() を使ってユーザを登録
-$user_id = 0;
+$user_id = $user->insert($posts);
 
 if (empty($user_id)) {
     // エラーメッセージをセッションに保存
