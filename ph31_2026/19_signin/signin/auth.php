@@ -10,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// TODO: POSTデータをサニタイズ
+$posts = sanitize($_POST)
+
 // TODO: セッションにPOSTデータを登録
 $_SESSION[APP_KEY]['signin'] = null;
 
