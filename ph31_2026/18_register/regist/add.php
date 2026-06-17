@@ -23,7 +23,7 @@ $user = new User();
 $user_exists = $user->findForExists($posts);
 if (!empty($user_exists['id'])) {
     // ユーザが既に存在する場合はエラーメッセージをセッションに保存
-    $_SESSION[APP_KEY]['errors']['public'] = 'このアカウント名は既に使用されています。';
+    $_SESSION[APP_KEY]['errors']['public'] = 'アカウント名または Email が既に使用されています。';
     header('Location: input.php');
     exit;
 }
