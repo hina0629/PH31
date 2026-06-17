@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // POSTデータ取得
 $posts = $_POST;
 // TODO: サニタイズ
-// $posts = sanitize($_POST);
+$posts = sanitize($_POST);
 
 // TODO: セッションの APP_KEY 下の regist にPOSTデータを保存
 $_SESSION[APP_KEY]['regist'] = $posts;
