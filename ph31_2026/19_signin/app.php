@@ -35,6 +35,7 @@ require_once LIB_DIR . 'Model.php';
 require_once APP_DIR . 'models/User.php';
 require_once APP_DIR . 'models/AuthUser.php';
 
+// BASE_URL どの階層にいても相対パスがつかえるようにする
 if (!defined('BASE_URL')) define('BASE_URL', getBaseUrl());
 
 // BASE_URL を定義（常にルートからの相対パス）
