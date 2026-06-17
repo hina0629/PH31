@@ -9,6 +9,7 @@ $form = $_SESSION[APP_KEY]['signin'] ?? [];
 $error = $_SESSION[APP_KEY]['error'] ?? null;
 
 // TODO: フラッシュメッセージとして削除
+unset($_SESSION[APP_KEY]['error']);
 ?>
 
 <!DOCTYPE html>
