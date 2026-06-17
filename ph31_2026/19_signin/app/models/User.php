@@ -133,7 +133,8 @@ class User extends Model
         // DB接続
         $pdo = self::pdo();
         // TODO: SQL作成: アカウント名でユーザを検索
-        $sql = "";
+        $sql = "SELECT * FROM users
+                WHERE account_name = :account_name;";
         try {
             // SQL用意
             $stmt = $pdo->prepare($sql);
