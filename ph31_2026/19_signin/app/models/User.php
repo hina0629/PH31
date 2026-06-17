@@ -140,9 +140,12 @@ class User extends Model
             $stmt = $pdo->prepare($sql);
             // SQL実行
             $stmt->execute(['account_name' => $account_name]);
-            // 結果取得
+            // 結果取得: 1件取得
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             // TODO: パスワード検証して、$user を返す
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            }
             return null;
         } catch (PDOException $e) {
             error_log($e->getMessage());
