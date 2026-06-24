@@ -33,7 +33,7 @@ function insert(int $userId, array $posts)
     // データベース接続
     $pdo = Database::getInstance();
     // TODO: SQLクエリ
-    $sql = "INSERT INTO xxxx (user_id, weight, heart_rate, systolic, diastolic, recorded_at) 
+    $sql = "INSERT INTO health_records(user_id, weight, heart_rate, systolic, diastolic, recorded_at) 
             VALUES (:user_id, :weight, :heart_rate, :systolic, :diastolic, :recorded_at)";
     // プリペアドステートメントを作成
     $stmt = $pdo->prepare($sql);
