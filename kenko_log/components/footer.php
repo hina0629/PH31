@@ -1,5 +1,7 @@
 <?php
 $basePath = BASE_URL;
+
+$year = date('Y');
 ?>
 
 <footer class="bg-sky-700 text-white">
@@ -16,7 +18,7 @@ $basePath = BASE_URL;
             </div>
             <div class="text-xs">
                 <!-- TODO: クレジットの年数を自動更新 -->
-                <span>&copy; 2020 - 2022 <?= SITE_TITLE ?>. All rights reserved.</span>
+                <span>&copy; 2020 - <?= $year ?> <?= SITE_TITLE ?>. All rights reserved.</span>
             </div>
         </div>
     </div>
