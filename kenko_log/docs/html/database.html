@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DB定義 — Kenko Log</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    thead tr {
+      background: #1e3a5f;
+      color: #e2e8f0;
+    }
+
+    th {
+      padding: 0.5rem 0.85rem;
+      text-align: left;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.45rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    code {
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.8rem;
+      background: #f1f5f9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+
+    .pk {
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    .fk {
+      color: #2563eb;
+    }
+
+    .null-yes {
+      color: #94a3b8;
+    }
+
+    .null-no {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.35s ease both;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-lg font-bold"
+          style="background:linear-gradient(135deg,#1a6ee6,#22d3ee)">PH</div>
+        <div>
+          <h1 class="text-base font-bold leading-tight">データベース定義</h1>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <a href="../../"
+          class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+          アプリ
+          <a href="./"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            Docs
+          </a>
+          <a href="database.html"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            DB定義
+          </a>
+          <a href="interfaces.html"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            IF一覧
+          </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- 概要 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl px-6 py-4 flex flex-wrap gap-6 text-sm">
+      <div><span class="text-slate-400 text-xs block mb-0.5">データベース名</span><code
+          class="text-base font-bold text-slate-700">health_log</code></div>
+      <div><span class="text-slate-400 text-xs block mb-0.5">文字セット</span><code>utf8mb4</code></div>
+      <div><span class="text-slate-400 text-xs block mb-0.5">照合順序</span><code>utf8mb4_general_ci</code></div>
+    </div>
+
+    <!-- テーブル一覧 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100">
+        <h2 class="font-bold text-sm text-slate-500 uppercase tracking-wider">テーブル一覧</h2>
+      </div>
+      <div class="divide-y divide-slate-100 text-sm">
+        <a href="#users" class="flex items-center gap-3 px-6 py-3 hover:bg-sky-50 transition"><code>users</code><span
+            class="text-slate-400 ml-2">ユーザー情報</span></a>
+        <a href="#health_records"
+          class="flex items-center gap-3 px-6 py-3 hover:bg-sky-50 transition"><code>health_records</code><span
+            class="text-slate-400 ml-2">体重・血圧・心拍数の記録</span></a>
+        <a href="#exercise_records"
+          class="flex items-center gap-3 px-6 py-3 hover:bg-sky-50 transition"><code>exercise_records</code><span
+            class="text-slate-400 ml-2">運動記録</span></a>
+        <a href="#sleep_records"
+          class="flex items-center gap-3 px-6 py-3 hover:bg-sky-50 transition"><code>sleep_records</code><span
+            class="text-slate-400 ml-2">睡眠記録</span></a>
+        <a href="#meal_records"
+          class="flex items-center gap-3 px-6 py-3 hover:bg-sky-50 transition"><code>meal_records</code><span
+            class="text-slate-400 ml-2">食事記録</span></a>
+      </div>
+    </div>
+
+    <!-- users -->
+    <div id="users" class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <h2 class="font-bold"><code>users</code></h2>
+        <span class="text-xs text-slate-400 ml-2">ユーザーのアカウント情報</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>NULL</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="pk">id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>AUTO_INCREMENT</td>
+              <td>主キー</td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td>VARCHAR(100)</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>ユーザー名</td>
+            </tr>
+            <tr>
+              <td><code>email</code></td>
+              <td>VARCHAR(255)</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>メールアドレス（UNIQUE）</td>
+            </tr>
+            <tr>
+              <td><code>password_hash</code></td>
+              <td>VARCHAR(255)</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>パスワードハッシュ</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>作成日時</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>更新日時（自動更新）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- health_records -->
+    <div id="health_records" class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <h2 class="font-bold"><code>health_records</code></h2>
+        <span class="text-xs text-slate-400 ml-2">体重・心拍数・血圧の日次記録（1日1レコード）</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>NULL</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="pk">id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>AUTO_INCREMENT</td>
+              <td>主キー</td>
+            </tr>
+            <tr>
+              <td><code class="fk">user_id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>FK: users.id</td>
+            </tr>
+            <tr>
+              <td><code>weight</code></td>
+              <td>FLOAT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>体重（kg）</td>
+            </tr>
+            <tr>
+              <td><code>heart_rate</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>心拍数（bpm）</td>
+            </tr>
+            <tr>
+              <td><code>systolic</code></td>
+              <td>INT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>収縮期血圧（上の血圧）</td>
+            </tr>
+            <tr>
+              <td><code>diastolic</code></td>
+              <td>INT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>拡張期血圧（下の血圧）</td>
+            </tr>
+            <tr>
+              <td><code>recorded_at</code></td>
+              <td>DATE</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>記録日（UNIQUE）</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>作成日時</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>更新日時（自動更新）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- exercise_records -->
+    <div id="exercise_records" class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <h2 class="font-bold"><code>exercise_records</code></h2>
+        <span class="text-xs text-slate-400 ml-2">運動の種類・時間・消費カロリー・距離</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>NULL</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="pk">id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>AUTO_INCREMENT</td>
+              <td>主キー</td>
+            </tr>
+            <tr>
+              <td><code class="fk">user_id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>FK: users.id（ON DELETE CASCADE）</td>
+            </tr>
+            <tr>
+              <td><code>exercise_date</code></td>
+              <td>DATE</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>運動日</td>
+            </tr>
+            <tr>
+              <td><code>exercise_type</code></td>
+              <td>VARCHAR(100)</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>運動の種類</td>
+            </tr>
+            <tr>
+              <td><code>duration_minutes</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>運動時間（分）</td>
+            </tr>
+            <tr>
+              <td><code>calories_burned</code></td>
+              <td>INT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>消費カロリー（kcal）</td>
+            </tr>
+            <tr>
+              <td><code>distance_km</code></td>
+              <td>DECIMAL(6,2)</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>距離（km）</td>
+            </tr>
+            <tr>
+              <td><code>memo</code></td>
+              <td>TEXT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>メモ</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>作成日時</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>更新日時（自動更新）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 text-xs text-slate-500 border-t border-slate-100">
+        INDEX: <code>idx_exercise_records_user_date</code> (user_id, exercise_date)
+      </div>
+    </div>
+
+    <!-- sleep_records -->
+    <div id="sleep_records" class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <h2 class="font-bold"><code>sleep_records</code></h2>
+        <span class="text-xs text-slate-400 ml-2">就寝・起床時刻と睡眠の質</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>NULL</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="pk">id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>AUTO_INCREMENT</td>
+              <td>主キー</td>
+            </tr>
+            <tr>
+              <td><code class="fk">user_id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>FK: users.id（ON DELETE CASCADE）</td>
+            </tr>
+            <tr>
+              <td><code>sleep_date</code></td>
+              <td>DATE</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>睡眠日</td>
+            </tr>
+            <tr>
+              <td><code>bedtime</code></td>
+              <td>DATETIME</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>就寝時刻</td>
+            </tr>
+            <tr>
+              <td><code>wake_time</code></td>
+              <td>DATETIME</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>起床時刻</td>
+            </tr>
+            <tr>
+              <td><code>sleep_duration_minutes</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>睡眠時間（分）</td>
+            </tr>
+            <tr>
+              <td><code>sleep_quality</code></td>
+              <td>TINYINT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>睡眠の質（1〜5、CHECK制約）</td>
+            </tr>
+            <tr>
+              <td><code>memo</code></td>
+              <td>TEXT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>メモ</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>作成日時</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>更新日時（自動更新）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 text-xs text-slate-500 border-t border-slate-100 space-y-0.5">
+        <p>INDEX: <code>idx_sleep_records_user_date</code> (user_id, sleep_date)</p>
+        <p>CHECK: <code>sleep_quality IS NULL OR sleep_quality BETWEEN 1 AND 5</code></p>
+      </div>
+    </div>
+
+    <!-- meal_records -->
+    <div id="meal_records" class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <h2 class="font-bold"><code>meal_records</code></h2>
+        <span class="text-xs text-slate-400 ml-2">食事の内容・カロリー・栄養素（1日複数可）</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>カラム名</th>
+              <th>型</th>
+              <th>NULL</th>
+              <th>デフォルト</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="pk">id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>AUTO_INCREMENT</td>
+              <td>主キー</td>
+            </tr>
+            <tr>
+              <td><code class="fk">user_id</code></td>
+              <td>INT</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>FK: users.id（ON DELETE CASCADE）</td>
+            </tr>
+            <tr>
+              <td><code>meal_date</code></td>
+              <td>DATE</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>食事日</td>
+            </tr>
+            <tr>
+              <td><code>meal_type</code></td>
+              <td>ENUM</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>breakfast / lunch / dinner / snack</td>
+            </tr>
+            <tr>
+              <td><code>food_name</code></td>
+              <td>VARCHAR(255)</td>
+              <td class="null-no">NO</td>
+              <td>—</td>
+              <td>食品名</td>
+            </tr>
+            <tr>
+              <td><code>calories</code></td>
+              <td>INT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>カロリー（kcal）</td>
+            </tr>
+            <tr>
+              <td><code>protein_g</code></td>
+              <td>DECIMAL(5,1)</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>タンパク質（g）</td>
+            </tr>
+            <tr>
+              <td><code>fat_g</code></td>
+              <td>DECIMAL(5,1)</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>脂質（g）</td>
+            </tr>
+            <tr>
+              <td><code>carbohydrate_g</code></td>
+              <td>DECIMAL(5,1)</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>炭水化物（g）</td>
+            </tr>
+            <tr>
+              <td><code>memo</code></td>
+              <td>TEXT</td>
+              <td class="null-yes">YES</td>
+              <td>—</td>
+              <td>メモ</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>作成日時</td>
+            </tr>
+            <tr>
+              <td><code>updated_at</code></td>
+              <td>DATETIME</td>
+              <td class="null-yes">YES</td>
+              <td>CURRENT_TIMESTAMP</td>
+              <td>更新日時（自動更新）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-6 py-3 bg-slate-50 text-xs text-slate-500 border-t border-slate-100">
+        INDEX: <code>idx_meal_records_user_date</code> (user_id, meal_date)
+      </div>
+    </div>
+
+    <!-- 凡例 -->
+    <div class="fade-up flex flex-wrap gap-4 text-xs text-slate-500 pb-6">
+      <span><span class="pk font-bold">●</span> 主キー（PK）</span>
+      <span><span class="fk font-bold">●</span> 外部キー（FK）</span>
+      <span><span class="null-no font-bold">NO</span> = NOT NULL</span>
+      <span><span class="null-yes">YES</span> = NULL 許容</span>
+    </div>
+
+  </div>
+
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] } } }
+    }
+  </script>
+</body>
+
+</html>

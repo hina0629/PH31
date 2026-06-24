@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web IF一覧 — Kenko Log</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    thead tr {
+      background: #1e3a5f;
+      color: #e2e8f0;
+    }
+
+    th {
+      padding: 0.5rem 0.85rem;
+      text-align: left;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.45rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    code {
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.78rem;
+      background: #f1f5f9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.35s ease both;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white text-lg font-bold"
+          style="background:linear-gradient(135deg,#1a6ee6,#22d3ee)">PH</div>
+        <div>
+          <h1 class="text-base font-bold leading-tight">Web インターフェース一覧</h1>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <a href="../../"
+          class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+          アプリ
+          <a href="./"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            Docs
+          </a>
+          <a href="database.html"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            DB定義
+          </a>
+          <a href="interfaces.html"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-600 hover:border-sky-300 hover:text-sky-700 hover:bg-sky-50 transition">
+            IF一覧
+          </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- 認証方式 -->
+    <div
+      class="fade-up bg-sky-50 border border-sky-200 rounded-2xl px-6 py-4 text-sm text-sky-800 flex flex-wrap gap-6">
+      <div><span class="font-bold">認証方式:</span> PHP セッション（<code>$_SESSION['user']</code>）</div>
+      <div><span class="font-bold">未認証時:</span> <code>/login/</code> へリダイレクト</div>
+      <div><span class="font-bold">CSRF対策:</span> フォーム送信時に <code>csrf_token</code> を検証</div>
+    </div>
+
+    <!-- 公開ページ -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600">認証不要</span>
+        <h2 class="font-bold">公開ページ</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>パラメータ</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ランディングページ</td>
+              <td><code>/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>登録・ログインへのリンク</td>
+            </tr>
+            <tr>
+              <td>ログインフォーム</td>
+              <td><code>/login/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>CSRF トークン発行</td>
+            </tr>
+            <tr>
+              <td>ログイン処理</td>
+              <td><code>/login/auth.php</code></td>
+              <td>POST</td>
+              <td>email, password, csrf_token</td>
+              <td>成功→<code>/dashboard/</code>、失敗→<code>/login/</code></td>
+            </tr>
+            <tr>
+              <td>ログアウト</td>
+              <td><code>/logout/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>セッション破棄→<code>/</code></td>
+            </tr>
+            <tr>
+              <td>ユーザー登録フォーム</td>
+              <td><code>/register/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>CSRF トークン発行</td>
+            </tr>
+            <tr>
+              <td>ユーザー登録処理</td>
+              <td><code>/register/store.php</code></td>
+              <td>POST</td>
+              <td>name, email, password, password_confirmation, csrf_token</td>
+              <td>PW 8文字以上・一致・メール重複チェック</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ダッシュボード -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">ダッシュボード</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>サマリー表示</td>
+              <td><code>/dashboard/</code></td>
+              <td>GET</td>
+              <td>最新の健康・運動・睡眠・食事データを一覧表示</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 健康記録 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">健康記録</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>パラメータ</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>一覧</td>
+              <td><code>/health/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>体重・心拍数・血圧の記録一覧</td>
+            </tr>
+            <tr>
+              <td>追加フォーム</td>
+              <td><code>/health/add.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>追加処理</td>
+              <td><code>/health/insert.php</code></td>
+              <td>POST</td>
+              <td>recorded_at, weight, heart_rate, systolic*, diastolic*</td>
+              <td>同日レコードがある場合はエラー</td>
+            </tr>
+            <tr>
+              <td>編集フォーム</td>
+              <td><code>/health/edit.php</code></td>
+              <td>GET</td>
+              <td><code>id</code>（クエリ）</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>更新処理</td>
+              <td><code>/health/update.php</code></td>
+              <td>POST</td>
+              <td>id, recorded_at, weight, heart_rate, systolic*, diastolic*</td>
+              <td>同日の別レコードがある場合はエラー</td>
+            </tr>
+            <tr>
+              <td>削除処理</td>
+              <td><code>/health/delete.php</code></td>
+              <td>POST</td>
+              <td>id</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>グラフ表示</td>
+              <td><code>/health/chart.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>体重・心拍数・血圧の推移グラフ、画像ダウンロード可</td>
+            </tr>
+            <tr>
+              <td>AI診断履歴</td>
+              <td><code>/health/ai_history.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>AI診断結果の一覧、最新50件</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 運動記録 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">運動記録</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>パラメータ</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>一覧</td>
+              <td><code>/activity/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>運動種類・時間・カロリー・距離を表示</td>
+            </tr>
+            <tr>
+              <td>追加フォーム</td>
+              <td><code>/activity/add.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>追加処理</td>
+              <td><code>/activity/insert.php</code></td>
+              <td>POST</td>
+              <td>exercise_date, exercise_type, duration_minutes, calories_burned*, distance_km*, memo*</td>
+              <td>運動時間は1分以上</td>
+            </tr>
+            <tr>
+              <td>編集フォーム</td>
+              <td><code>/activity/edit.php</code></td>
+              <td>GET</td>
+              <td><code>id</code>（クエリ）</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>更新処理</td>
+              <td><code>/activity/update.php</code></td>
+              <td>POST</td>
+              <td>id, exercise_date, exercise_type, duration_minutes, calories_burned*, distance_km*, memo*</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>削除処理</td>
+              <td><code>/activity/delete.php</code></td>
+              <td>POST</td>
+              <td>id</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 睡眠記録 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">睡眠記録</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>パラメータ</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>一覧</td>
+              <td><code>/sleep/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>就寝・起床・睡眠時間・睡眠の質を表示</td>
+            </tr>
+            <tr>
+              <td>追加フォーム</td>
+              <td><code>/sleep/add.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>追加処理</td>
+              <td><code>/sleep/insert.php</code></td>
+              <td>POST</td>
+              <td>sleep_date, bedtime, wake_time, sleep_duration_minutes, sleep_quality*, memo*</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>編集フォーム</td>
+              <td><code>/sleep/edit.php</code></td>
+              <td>GET</td>
+              <td><code>id</code>（クエリ）</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>更新処理</td>
+              <td><code>/sleep/update.php</code></td>
+              <td>POST</td>
+              <td>id, sleep_date, bedtime, wake_time, sleep_duration_minutes, sleep_quality*, memo*</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>削除処理</td>
+              <td><code>/sleep/delete.php</code></td>
+              <td>POST</td>
+              <td>id</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>グラフ表示</td>
+              <td><code>/sleep/chart.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>睡眠時間の推移グラフ、画像ダウンロード可</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 食事記録 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">食事記録</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>パラメータ</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>一覧</td>
+              <td><code>/meal/</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>食事区分・メニュー・カロリー・PFC を表示</td>
+            </tr>
+            <tr>
+              <td>追加フォーム</td>
+              <td><code>/meal/add.php</code></td>
+              <td>GET</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>追加処理</td>
+              <td><code>/meal/insert.php</code></td>
+              <td>POST</td>
+              <td>meal_date, meal_type, food_name, calories*, protein_g*, fat_g*, carbohydrate_g*, memo*</td>
+              <td>meal_type: breakfast / lunch / dinner / snack</td>
+            </tr>
+            <tr>
+              <td>編集フォーム</td>
+              <td><code>/meal/edit.php</code></td>
+              <td>GET</td>
+              <td><code>id</code>（クエリ）</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>更新処理</td>
+              <td><code>/meal/update.php</code></td>
+              <td>POST</td>
+              <td>id, meal_date, meal_type, food_name, calories*, protein_g*, fat_g*, carbohydrate_g*, memo*</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>削除処理</td>
+              <td><code>/meal/delete.php</code></td>
+              <td>POST</td>
+              <td>id</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- API -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700">認証必須</span>
+        <h2 class="font-bold">API エンドポイント</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>レスポンス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>健康グラフ用データ</td>
+              <td><code>/api/health/get/</code></td>
+              <td>GET</td>
+              <td>JSON 配列（recorded_at, weight, heart_rate, systolic, diastolic）最新30件昇順</td>
+            </tr>
+            <tr>
+              <td>AI 健康アドバイス</td>
+              <td><code>/api/health/ai/</code></td>
+              <td>GET</td>
+              <td>JSON <code>{ status, advice }</code></td>
+            </tr>
+            <tr>
+              <td>CSV ダウンロード</td>
+              <td><code>/api/health/csv/</code></td>
+              <td>GET</td>
+              <td><code>health_records_latest.csv</code>（最新30件）</td>
+            </tr>
+            <tr>
+              <td>AI診断履歴 CSV</td>
+              <td><code>/api/health/ai/csv/</code></td>
+              <td>GET</td>
+              <td><code>ai_diagnosis_history.csv</code>（全件降順）</td>
+            </tr>
+            <tr>
+              <td>運動グラフ用データ</td>
+              <td><code>/api/activity/get/</code></td>
+              <td>GET</td>
+              <td>JSON 配列（exercise_date, total_calories, total_duration, record_count）最新30件</td>
+            </tr>
+            <tr>
+              <td>食事 AI 栄養予測</td>
+              <td><code>/api/meal/ai/</code></td>
+              <td>POST</td>
+              <td>JSON <code>{ status, calories, protein_g, fat_g, carbohydrate_g }</code></td>
+            </tr>
+            <tr>
+              <td>睡眠グラフ用データ</td>
+              <td><code>/api/sleep/get/</code></td>
+              <td>GET</td>
+              <td>JSON 配列（sleep_date, sleep_duration_minutes, sleep_quality）最新30件</td>
+            </tr>
+            <tr>
+              <td>ダッシュボードサマリー</td>
+              <td><code>/api/dashboard/</code></td>
+              <td>GET</td>
+              <td>JSON <code>{ status, user, latest_health, latest_sleep, exercise_summary, meal_summary, ... }</code>
+              </td>
+            </tr>
+            <tr>
+              <td>疎通確認</td>
+              <td><code>/api/test/</code></td>
+              <td>GET</td>
+              <td>JSON <code>{"text":"test"}</code>（<span class="text-slate-400">認証不要</span>）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 管理画面 -->
+    <div class="fade-up bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+        <span
+          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600">認証不要</span>
+        <h2 class="font-bold">管理画面（初期セットアップ用）</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>エンドポイント</th>
+              <th>メソッド</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>リダイレクト</td>
+              <td><code>/admin/</code></td>
+              <td>GET</td>
+              <td><code>/admin/create_database.php</code> へリダイレクト</td>
+            </tr>
+            <tr>
+              <td>DB 初期化</td>
+              <td><code>/admin/create_database.php</code></td>
+              <td>GET</td>
+              <td>schema.sql・insert_data.sql のプレビュー表示</td>
+            </tr>
+            <tr>
+              <td>DB 初期化実行</td>
+              <td><code>/admin/create_database.php</code></td>
+              <td>POST</td>
+              <td>テーブル作成＋テストデータ挿入を実行</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="text-xs text-slate-400 pb-6">* は任意パラメータ</p>
+
+  </div>
+
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] } } }
+    }
+  </script>
+</body>
+
+</html>

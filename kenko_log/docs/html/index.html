@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH 評定課題</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    thead tr {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    th {
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.84em;
+      background: #f1f5f9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .section {
+      scroll-margin-top: 6rem;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-800">
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-3">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-600 text-lg font-bold text-white">PH
+        </div>
+        <div>
+          <h1 class="text-base font-bold leading-tight text-slate-900">評定課題</h1>
+        </div>
+      </div>
+      <nav class="flex gap-2 text-xs">
+        <a href="../../"
+          class="rounded-lg border border-slate-200 px-3 py-1.5 font-medium text-slate-600 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700">アプリ</a>
+        <a href="./"
+          class="rounded-lg border border-slate-200 px-3 py-1.5 font-medium text-slate-600 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700">Docs</a>
+        <a href="database.html"
+          class="rounded-lg border border-slate-200 px-3 py-1.5 font-medium text-slate-600 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700">DB定義</a>
+        <a href="interfaces.html"
+          class="rounded-lg border border-slate-200 px-3 py-1.5 font-medium text-slate-600 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700">IF一覧</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sticky top-[57px] z-40 border-b border-slate-200 bg-slate-100">
+    <div class="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-2 text-sm">
+      <a href="#purpose"
+        class="whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 font-medium text-slate-600">課題内容</a>
+      <a href="#submission"
+        class="whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 font-medium text-slate-600">提出方法</a>
+      <a href="#target"
+        class="whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 font-medium text-slate-600">調査対象</a>
+      <a href="#items"
+        class="whitespace-nowrap rounded-full border border-slate-300 bg-white px-3 py-1 font-medium text-slate-600">未完成箇所</a>
+    </div>
+  </div>
+
+  <main class="mx-auto max-w-6xl space-y-8 px-4 py-4">
+
+    <section id="purpose" class="section rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div class="mb-5">
+        <div>
+          <h2 class="mt-1 text-2xl font-bold text-slate-900">PHPアプリ 未完成箇所調査レポート課題</h2>
+        </div>
+      </div>
+
+      <div class="grid gap-5">
+        <div class="space-y-3">
+          <h3 class="font-bold text-slate-900">課題の目的</h3>
+          <p class="text-md leading-7 text-slate-600">
+            「Kenko Log」の未完成箇所や動作不良を自分で調査し、<strong>原因と修正方針をレポートとしてまとめる。</strong>
+          </p>
+          <ul class="list-disc space-y-1 pl-5 text-md leading-7 text-slate-600">
+            <li>エラーや表示崩れを見つける</li>
+            <li>PHP、JavaScript、SQL、HTML の調査・役割を説明する</li>
+            <li>データベース定義や既存コードを根拠に原因を考える</li>
+            <li>修正後に何を確認すればよいかを整理する</li>
+            <li>マークダウン（md）の記述訓練</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="submission" class="section rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="mt-1 text-xl font-bold text-slate-900">提出方法・期限</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-[1fr_1.5fr]">
+        <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+          <p class="text-sm font-bold text-rose-700">提出期限</p>
+          <p class="mt-2 text-2xl font-bold text-rose-800">2026/07/19（日）</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <p class="text-sm font-bold text-slate-900">提出物</p>
+          <ul class="mt-2 list-disc space-y-1 pl-5 text-sm leading-7 text-slate-600">
+            <li>Teams にレポートを .md ファイルで提出する。</li>
+            <li>ファイル名: <strong><span class="bg-rose-100 p-1">php_出席番号_氏名.md</span></strong></li>
+            <li>例: <strong>php_01_HAL太郎.md</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="target" class="section rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="mt-1 text-xl font-bold text-slate-900">必須条件</h2>
+      <div class="mt-4 text-md leading-7">
+        <ul class="list-disc space-y-1 pl-5">
+          <li>下記の「未完成・要修正箇所」（配布した <code>docs/未完成箇所レポート.md</code>） にある項目から、<strong><span class="bg-rose-100 p-1">最低
+                8項目を調査</span></strong>する。</li>
+          <li>「未完成・要修正箇所」一覧を参考に、<strong>症状・原因・修正内容・動作確認</strong> をまとめる。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="criteria" class="section rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-100 px-6 py-4">
+        <h2 class="mt-1 text-xl font-bold text-slate-900">レポート項目</h2>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>観点</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold text-slate-800">症状の確認</td>
+              <td>実際の画面、エラー、表示内容を説明する。</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-slate-800">原因の説明</td>
+              <td>ファイル名、変数名、SQL、API URL などを根拠に説明する。</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-slate-800">修正方針</td>
+              <td>既存の設計や DB 定義に合った修正方針を書く。</td>
+            </tr>
+            <tr>
+              <td class="font-bold text-slate-800">動作確認</td>
+              <td>修正後に確認すべき操作と期待結果を書く。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 border border-slate-200 bg-slate-50 p-4">
+        <h3 class="mt-1 text-sm font-bold text-slate-900">記述例</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">
+          <code>php_00_HAL.md</code>を参考に、各項目について、次の形式でまとめる。
+        </p>
+        <pre class="mt-4 overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm leading-7 text-slate-100"><code>### No.5 健康記録の追加
+
+#### 症状
+健康記録を追加すると SQL エラーが表示される。
+
+#### 確認したファイル
+health/insert.php
+
+#### 原因
+SQL がコーディングされていない。
+
+#### 修正内容
+SQL を以下のように修正した。
+
+INSERT INTO ....
+
+#### 動作確認
+健康記録を追加し、一覧画面に登録内容が表示されることを確認した。</code></pre>
+      </div>
+    </section>
+
+    <section id="items" class="section rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-100 px-6 py-4">
+        <h2 class="mt-1 text-xl font-bold text-slate-900">未完成・要修正箇所</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th class="text-right">No.</th>
+              <th>ファイル</th>
+              <th>箇所</th>
+              <th>現象・問題</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-right font-mono text-slate-500">1</td>
+              <td><code>env.php</code></td>
+              <td>DB 接続と作成</td>
+              <td>DB 接続情報を設定し、DB を構築する必要がある。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">2</td>
+              <td><code>index.php</code></td>
+              <td>ヒーローで「キャッチコピー」が表示</td>
+              <td>トップページ左側に <code>components/top/hero_left.php</code> を表示する。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">3</td>
+              <td><code>components/footer.php</code></td>
+              <td>クレジットで「2022」部分を今年で表示</td>
+              <td>フッターのクレジットの年数が「2020 - 2022」固定になっている。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">4</td>
+              <td><code>health/index.php</code></td>
+              <td>心拍数(bpm)表示</td>
+              <td>健康記録の一覧表で心拍数が表示されていない。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">5</td>
+              <td><code>health/insert.php</code></td>
+              <td>健康管理の記録の追加</td>
+              <td>健康記録の追加時に、存在しないテーブル名 <code>xxxx</code> へ INSERT しようとして SQL エラーになる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">6</td>
+              <td><code>health/edit.php</code></td>
+              <td>健康管理の編集画面表示</td>
+              <td>編集対象の <code>id</code> を GET パラメータから取得していないため、編集画面で「該当する記録が見つかりません。」になる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">7</td>
+              <td><code>api/health/csv/index.php</code></td>
+              <td>健康管理のCSVダウンロード</td>
+              <td>CSV ダウンロード用の SQL が空のため、健康記録 CSV のダウンロード処理が失敗する。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">8</td>
+              <td><code>activity/index.php</code></td>
+              <td>アクティビティ種別の表示</td>
+              <td>アクティビティ一覧の「種類」列で空の配列キーを参照しているため Warning が出る。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">9</td>
+              <td><code>activity/add.php</code></td>
+              <td>アクティビティの記録追加</td>
+              <td>フォーム送信メソッドの不具合で「不正なリクエストです。」になる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">10</td>
+              <td><code>meal/index.php</code></td>
+              <td>食事種別表示</td>
+              <td>一覧の種類列が <code>TODO: 食事の種別を表示</code> のままで、実データが表示されない。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">11</td>
+              <td><code>sleep/delete.php</code></td>
+              <td>睡眠データ削除</td>
+              <td>睡眠の編集画面でデータ削除すると、<code>Fatal error</code> になる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">12</td>
+              <td><code>logout/index.php</code></td>
+              <td>ログアウト処理</td>
+              <td>メニューからログアウトしても、完全にログアウトできない。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">13</td>
+              <td><code>components/nav.php</code></td>
+              <td>認証状態による出し分け</td>
+              <td>ログイン済み用ナビは <code>$auth_user</code> がある場合だけ表示されるようにする。未ログイン用ナビは常に include されるため、メニューが表示される。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">14</td>
+              <td><code>login/index.php</code></td>
+              <td>古い入力値の復元</td>
+              <td>ログイン失敗時のセッションを復元していないため、メールアドレスが復元されない。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">15</td>
+              <td><code>env.php</code></td>
+              <td>Gemini API キー</td>
+              <td>
+                <a class="text-sky-600" href="https://aistudio.google.com/" target="_blank">Google AI Studio</a> で
+                Gemini API キーを発行して、健康管理の AI 分析の動作確認を行う。レポートに自分の API キーは絶対に書かないこと。
+
+                <a class="text-sky-600" href="https://aistudio.google.com/"
+                  target="_blank">https://aistudio.google.com/</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">16</td>
+              <td><code>register/input.php</code></td>
+              <td>CSRF トークン</td>
+              <td>ユーザ登録すると「不正なリクエストです。」というエラーになる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">17</td>
+              <td><code>register/store.php</code></td>
+              <td>パスワードをハッシュ化して保存する</td>
+              <td>ユーザ登録で <code>password_hash</code> がないため SQL エラーになる。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">18</td>
+              <td><code>js/activity_chart.js</code></td>
+              <td><code>const url = ''</code></td>
+              <td>アクティビティグラフ用 API の URL が空のため、グラフデータを取得できない。</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">19</td>
+              <td>その他</td>
+              <td>---</td>
+              <td>---</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <section class="rounded-2xl border border-amber-200 bg-amber-50 p-6 text-sm leading-7 text-amber-900">
+      <h2 class="text-lg font-bold">加点条件</h2>
+      <p class="mt-2">次の内容がある場合は、加点対象。</p>
+      <ul class="mt-2 list-disc space-y-1 pl-5">
+        <li>8項目以上の調査</li>
+        <li>項目以外のバグ修正レポート</li>
+        <li>現状のプロジェクトの問題点</li>
+        <li>さらなる改善点の提示</li>
+      </ul>
+      <p class="mt-3">
+        例: どの処理でエラーになるか、どの処理が不足していてセキュリティや保守性に影響するか、
+        どのような方法を利用すると改善できるかを説明する。
+      </p>
+    </section>
+
+    <section id="items" class="section rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-100 px-6 py-4">
+        <h2 class="my-3 text-xl font-bold text-slate-900">アプリ設定チェックリスト</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="text-right">No.</th>
+              <th>手順</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-right font-mono text-slate-500">1</td>
+              <td>Webサーバと MySQLサーバの起動</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">2</td>
+              <td>「kenko_log.zip」をダウンロード</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">3</td>
+              <td>「kenko_log」フォルダを Web サーバのドキュメントルートに配置</td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">4</td>
+              <td>
+                env.php で DB 接続と Gemini API キーを設定する
+                <pre class="mt-4 overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm leading-7 text-slate-100"><code>// MySQL 接続設定
+const DB_CONNECTION = 'mysql';
+const DB_HOST = '127.0.0.1';
+const DB_NAME = 'health_log';
+const DB_USER = 'ユーザ名';
+const DB_PASS = 'パスワード';
+const DB_PORT = 'ポート番号';
+const DB_CHARSET = 'utf8mb4';
+// Google AI Studio で Gemini APIキー を発行して設定する
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/';
+const GEMINI_API_KEY = 'APIキーを設定';
+const GEMINI_MODEL = 'gemini-2.5-flash-lite';
+</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">5</td>
+              <td>
+                <p>ブラウザでアプリにアクセスし、DB管理 > データベースの初期化</p>
+                <img src="../../images/web_db_setup_1.png" width="600" alt="">
+                <img src="../../images/web_db_setup_2.png" width="200" alt="">
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right font-mono text-slate-500">6</td>
+              <td>
+                <p>ログイン画面で「テストユーザ」を使用してログイン</p>
+                <img src="../../images/login.png" width="400" alt="">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
