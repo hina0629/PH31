@@ -1,0 +1,11 @@
+.DS_Store
+images/user_icon/
+images/uploads/
+images/profile/
+env.php
+env.local.php
+.claude/
+
+## md
+CLAUDE.md
+SKILL.md
