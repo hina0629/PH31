@@ -18,7 +18,7 @@ require_once 'app.php';
             <div class="relative grid min-h-[calc(100vh-88px)] w-full items-stretch md:grid-cols-[1.0fr_1.1fr]">
 
                 <!-- TODO: components/top/hero_left.php を表示 -->
-                TODO: components/top/hero_left.php を表示
+                <?php include "components/top/hero_left.php" ?>
 
                 <!-- components/top/hero_right.php を表示 -->
                 <?php include "components/top/hero_right.php" ?>
