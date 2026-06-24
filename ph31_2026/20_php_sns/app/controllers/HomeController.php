@@ -83,7 +83,7 @@ class HomeController extends AuthenticatedController
         $posts['user_id'] = 0;
 
         $tweet = new Tweet();
-        $tweet->insert($posts['user_id'], $posts);
+        $tweet->insert((int) $this->authUser['id'], $posts);
 
         // トップにリダイレクト
         Request::redirect('home/');
