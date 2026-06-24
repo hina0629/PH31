@@ -7,7 +7,7 @@ use Lib\Database;
 \Lib\App::authUser();
 
 // TODO: GETリクエストから id を取得
-$id = null;
+$id = $_GET['id'];
 
 // id を渡してレコードを取得
 $record = find($id, (int) $_SESSION['user']['id']);
@@ -23,7 +23,7 @@ if (isset($_SESSION['message'])) {
     unset($_SESSION['message']);
 }
 
-function find($id, int $userId)
+function find(int $id, int $userId)
 {
     // データベース接続
     $pdo = Database::getInstance();
