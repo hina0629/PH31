@@ -10,7 +10,7 @@ use Lib\Database;
 // データベース接続
 $pdo = Database::getInstance();
 // TODO: SQLクエリを作成 
-$sql = "";
+$sql = "SELECT * FROM health_records WHERE user_id = :user_id";
 
 // プリペアドステートメントを作成して実行
 $stmt = $pdo->prepare($sql);
