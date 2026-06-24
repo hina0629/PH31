@@ -95,7 +95,7 @@ function get(int $userId, int $limit = 30)
                                     </td>
                                     <td class="px-5 py-4 font-medium" nowrap="nowrap"><?= htmlspecialchars(date('Y/m/d', strtotime($row['recorded_at']))) ?></td>
                                     <td class="px-5 py-4"><?= htmlspecialchars($row['weight']) ?></td>
-                                    <td class="px-5 py-4">TODO: 心拍数を表示</td>
+                                    <td class="px-5 py-4"><?= htmlspecialchars($row['heart_rate']) ?></td>
                                     <td class="px-5 py-4"><?= htmlspecialchars($row['systolic']) ?></td>
                                     <td class="px-5 py-4"><?= htmlspecialchars($row['diastolic']) ?></td>
                                 </tr>
