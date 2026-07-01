@@ -46,7 +46,7 @@ class User
      * @param array $posts ユーザのアカウント名
      * @return array|null ユーザデータの連想配列、もしくは該当するユーザがなければ null
      */
-    public function findForExists(array $posts): ?array
+    public function findForExists(array $posts)
     {
         try {
             $account_name = $posts['account_name'];
