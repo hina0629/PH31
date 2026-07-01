@@ -6,7 +6,7 @@ $errors = $_SESSION['login_errors'] ?? [];
 // 成功メッセージをセッションから取得
 $message = $_SESSION['login_message'] ?? '';
 // TODO: 古い入力値を取得（なければ空の配列）
-$old = [ 'email' => '' ];
+$old = $_SESSION['login_old'] ?? ['email' => ''];
 
 // セッションのエラーメッセージ、成功メッセージ、古い入力値をクリア
 unset($_SESSION['login_errors'], $_SESSION['login_message'], $_SESSION['login_old']);
