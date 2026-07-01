@@ -47,7 +47,7 @@ if (isset($_SESSION['activity_message'])) {
                 </div>
             <?php endif; ?>
 
-            <form action="activity/insert.php" method="" class="space-y-6">
+            <form action="activity/insert.php" method="POST" class="space-y-6">
                 <div>
                     <label class="mb-2 block text-sm font-semibold text-slate-700">運動日</label>
                     <input type="date" name="exercise_date" required value="<?= htmlspecialchars($record['exercise_date']) ?>"
