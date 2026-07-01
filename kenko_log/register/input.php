@@ -70,7 +70,7 @@ if (empty($_SESSION['csrf_token'])) {
 
                 <form action="register/store.php" method="post" class="space-y-5">
                     <!-- TODO: CSRFトークン送信 -->
-                    <input type="hidden" name="csrf_token" value="">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 
                     <div>
                         <label for="name" class="mb-2 block text-sm font-semibold text-slate-700">名前</label>
