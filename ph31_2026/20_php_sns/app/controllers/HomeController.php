@@ -24,15 +24,15 @@ class HomeController extends AuthenticatedController
         // TODO: $tweetsを渡す
         View::render('home/index', [
             'auth_user' => $this->authUser,
-            'tweets' => $tweets,
             'active_tab' => $tab,
+            'tweets' => $tweets,
         ]);
     }
 
     public function detail()
     {
         // TODO: GETパラメータからIDを取得: $_GET['id']
-        $id = $_GET['id'] ?? 0;
+        $id = $_GET['id'] ?? null;
         // 投稿IDがなければホームにリダイレクト
         if (!$id) Request::redirect('home/');
 
@@ -83,7 +83,7 @@ class HomeController extends AuthenticatedController
         $posts['user_id'] = 0;
 
         $tweet = new Tweet();
-        $tweet->insert((int) $this->authUser['id'], $posts);
+        $tweet->insert($posts['user_id'], $posts);
 
         // トップにリダイレクト
         Request::redirect('home/');

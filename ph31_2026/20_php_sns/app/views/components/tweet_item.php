@@ -19,10 +19,8 @@ if (!isset($auth_user)) return;
                 </span>
             </div>
             <div class="tweet-message mt-1 text-slate-800 text-sm leading-relaxed" data-id="<?= (int) $tweet['id'] ?>">
-                <!-- TODO: メッセージリンク: home/detail.php?id= でGETパラメータ -->
-                <!-- TODO: メッセージ(message)を改行つきで表示 -->
                 <a href="home/detail.php?id=<?= (int) $tweet['id'] ?>">
-                    <?= h($tweet['message']) ?>
+                    <?= nl2br(h($tweet['message'])) ?>
                 </a>
             </div>
 
