@@ -80,7 +80,7 @@ class HomeController extends AuthenticatedController
         $posts = sanitize($_POST);
 
         // TODO: ログインユーザのIDに置き換える: $this->authUser['id']
-        $posts['user_id'] = 0;
+        $posts['user_id'] = $this->authUser['id'];
 
         $tweet = new Tweet();
         $tweet->insert($posts['user_id'], $posts);
