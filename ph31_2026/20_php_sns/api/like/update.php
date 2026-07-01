@@ -43,6 +43,6 @@ $liked = $like->fetch($tweet_id, $user_id);
 $data = ['like_count' => $like_count, 'liked' => $liked];
 // TODO: json_encode() で $data をJSON文字列に変換して $json に代入
 // オプション: JSON_UNESCAPED_UNICODE
-$json = '';
+$json = json_encode($data, JSON_UNESCAPED_UNICODE);
 // JSON出力
 echo $json;
