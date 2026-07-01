@@ -10,11 +10,13 @@ require_once __DIR__ . '/../app.php';
         </a>
 
         <!-- ナビゲーション（デスクトップ） -->
-        <!-- TODO: $auth_user が存在する場合のナビゲーション項目を表示 -->
-        <?php include BASE_DIR . 'components/user_nav.php'; ?>
-
-        <!-- CTAボタン -->
-        <?php include BASE_DIR . 'components/public_nav.php'; ?>
+        <?php if ($auth_user) { ?>
+            <!-- TODO: $auth_user が存在する場合のナビゲーション項目を表示 -->
+            <?php include BASE_DIR . 'components/user_nav.php'; ?>
+        <?php } else { ?>
+            <!-- CTAボタン -->
+            <?php include BASE_DIR . 'components/public_nav.php'; ?>
+        <?php } ?>
 
         <!-- ハンバーガー（モバイル） -->
         <button id="nav-toggle" class="md:hidden p-2 rounded-md text-slate-600 hover:bg-sky-50"
