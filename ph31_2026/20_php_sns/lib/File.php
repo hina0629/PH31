@@ -51,13 +51,8 @@ class File
             }
             // アップロード先のディレクトリを指定
             $localDir = self::localDir($uploadDir);
-            // アップロード先のディレクトリを確認
-            $checkedDir = self::checkUploadDir($localDir);
-            if ($checkedDir === false) {
-                return null;
-            }
             // アップロード先のパスを指定
-            $uploadPath = $checkedDir . $fileName;
+            $uploadPath = $localDir . $fileName;
             // ファイルを指定したディレクトリに移動
             if (move_uploaded_file($tmpPath, $uploadPath)) {
                 // URLパス
