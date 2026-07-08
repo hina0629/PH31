@@ -56,16 +56,13 @@ class Tweet
         $spaced     = preg_replace('/#(?=\S)/', '# ', $normalized); // "#anime" → "# anime"
 
         // TODO: WHERE で LIKE 検索: 
-        // $where = "";
         $where  = '(tweets.message LIKE :keyword OR tweets.message LIKE :keyword_spaced)';
 
+        // TODO: 検索パラメータ: 
         $params = [
             'keyword'        => "%{$normalized}%",
             'keyword_spaced' => "%{$spaced}%",
         ];
-        // TODO: 検索パラメータ: 
-        // 'keyword' => "%{$normalized}%",
-        // 'keyword_spaced' => "%{$spaced}%",
 
         return $this->fetchTweets($where, $params, $auth_user_id, $limit);
     }
@@ -200,7 +197,8 @@ class Tweet
             $pdo = Database::getInstance();
             // TODO: tweets テーブルにデータを追加：INSERT
             // (user_id, message, image_path)
-            $sql = "INSERT INTO tweets (user_id, message, image_path) VALUES (:user_id, :message, :image_path)";
+            $sql = "INSERT INTO tweets (user_id, message, image_path)
+                    VALUES (:user_id, :message, :image_path)";
             $stmt = $pdo->prepare($sql);
             $result = $stmt->execute($data);
             if ($result) {

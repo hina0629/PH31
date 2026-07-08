@@ -33,7 +33,7 @@ $profile = $form['profile'] ?? ($auth_user['profile'] ?? '');
                         <label for="image-input" class="cursor-pointer">
                             <img id="preview-image" src="<?= User::profileImage($auth_user['profile_image']) ?>" alt="Profile Picture" class="w-32 h-32 object-cover rounded-full mb-4">
                         </label>
-                        <!-- <input type="file" id="image-input" name="file" class="mb-3 block w-full text-sm text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-sky-50 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-sky-600 hover:file:bg-sky-100" accept="image/*" required> -->
+                        <input type="file" id="image-input" name="file" class="mb-3 block w-full text-sm text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-sky-50 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-sky-600 hover:file:bg-sky-100" accept="image/*" required>
                         <button id="upload-button"
                             class="w-full text-sm my-2 py-1 px-3 bg-sky-500 hover:bg-sky-700 text-white rounded-lg">
                             アップロード

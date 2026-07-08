@@ -85,7 +85,7 @@ class Like
         try {
             // DB接続
             $pdo = Database::getInstance();
-            // TODO: いいねを削除するSQL文: user_id と tweet_id を指定
+            // いいねを削除するSQL文: user_id と tweet_id を指定
             $sql = "DELETE FROM likes WHERE tweet_id = :tweet_id AND user_id = :user_id";
             // SQL事前準備
             $stmt = $pdo->prepare($sql);

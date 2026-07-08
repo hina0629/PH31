@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['error' => 'Method Not Allowed'], JSON_UNESCAPED_UNICODE);
     exit;
 }
-
+// POSTデータの取得
 $body = json_decode(file_get_contents('php://input'), true);
 $tweet_id = isset($body['tweet_id']) ? (int) $body['tweet_id'] : null;
 
