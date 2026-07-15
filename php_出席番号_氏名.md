@@ -29,6 +29,7 @@
 18. No.18: const url = ''
 19. No.19: ログアウトした後にもトップページにあなたの健康データが出る
 20. No.20: どのアカウントでログインしても値が同じ
+21. No.21: ログイン後に「ログイン」「新規登録」が表示されている
 
 ## No1. DB 接続情報 
 #### 症状
@@ -575,25 +576,40 @@ $mealLabels = [
 
 ---
 
-## No.
+## No.21 ログイン後に「ログイン」「新規登録」が表示されている
 #### 症状
-
+ログインした後も`hero_left.php`の中に「ログイン」と「新規登録」が残っているのが気持ち悪い
 
 #### 確認したファイル
-- ``
+- `components/top/hero_left.php`
 
 #### 原因
-
+「ログインされていない」という条件がないから
 
 #### 修正内容
-
+セッションにユーザー情報がなければという条件を付け足した
 
 ```php
-
+<?php if (!isset($_SESSION['user'])) { ?>
+    <div class="flex flex-col gap-3 sm:flex-row justify-center">
+        <a href="register/"
+            class="inline-flex items-center justify-center gap-2 rounded-lg kenko-gradient
+            px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-sky-200
+            transition hover:opacity-90 hover:shadow-lg hover:shadow-sky-300">
+            ユーザ登録
+        </a>
+        <a href="login/"
+            class="inline-flex items-center justify-center gap-2 rounded-lg border border-sky-200
+            bg-white px-8 py-3.5 text-sm font-bold text-sky-700 shadow-sm
+            transition hover:border-sky-300 hover:bg-sky-50">
+            ログイン
+        </a>
+    </div>
+<?php } ?>
 ```
 
 #### 動作確認
-- 
+- ログイン状態では、`hero_left.php`の中に「ログイン」「新規登録」は表示されなくなった
 
 ---
 

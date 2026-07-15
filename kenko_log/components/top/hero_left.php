@@ -15,20 +15,22 @@
             </p>
 
             <!-- CTAボタン -->
-            <div class="flex flex-col gap-3 sm:flex-row justify-center">
-                <a href="register/"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg kenko-gradient
-                       px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-sky-200
-                       transition hover:opacity-90 hover:shadow-lg hover:shadow-sky-300">
-                    ユーザ登録
-                </a>
-                <a href="login/"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-sky-200
-                       bg-white px-8 py-3.5 text-sm font-bold text-sky-700 shadow-sm
-                       transition hover:border-sky-300 hover:bg-sky-50">
-                    ログイン
-                </a>
-            </div>
+            <?php if (!isset($_SESSION['user'])) { ?>
+                <div class="flex flex-col gap-3 sm:flex-row justify-center">
+                    <a href="register/"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg kenko-gradient
+                        px-8 py-3.5 text-sm font-bold text-white shadow-md shadow-sky-200
+                        transition hover:opacity-90 hover:shadow-lg hover:shadow-sky-300">
+                        ユーザ登録
+                    </a>
+                    <a href="login/"
+                        class="inline-flex items-center justify-center gap-2 rounded-lg border border-sky-200
+                        bg-white px-8 py-3.5 text-sm font-bold text-sky-700 shadow-sm
+                        transition hover:border-sky-300 hover:bg-sky-50">
+                        ログイン
+                    </a>
+                </div>
+            <?php } ?>
         </div>
 
     </div>
