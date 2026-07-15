@@ -26,6 +26,7 @@
 15. No.15: Gemini API キー
 16. No.16: CSRF トークン
 17. No.17: パスワードをハッシュ化して保存する
+18. No.18: const url = ''
 
 ## No1. DB 接続情報 
 #### 症状
@@ -425,25 +426,25 @@ $posts['password_hash'] = password_hash($posts['password'], PASSWORD_DEFAULT);
 
 ---
 
-## No.
+## No.18 const url = ''
 #### 症状
-
+アクティビティグラフのグラフデータを取得できない。
 
 #### 確認したファイル
-- ``
+- `js/activity_chart.js`
 
 #### 原因
-
+アクティビティグラフ用 API の URL が空のため
 
 #### 修正内容
-
+API の URL を書いた
 
 ```php
-
+const url = 'api/activity/get';
 ```
 
 #### 動作確認
-- 
+- アクティビティグラフが表示された
 
 ---
 

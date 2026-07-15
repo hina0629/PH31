@@ -8,7 +8,7 @@ renderCharts();
 
 async function fetchActivityData() {
     // TODO: APIのURLを指定
-    const url = '';
+    const url = 'api/activity/get';
     // APIからデータを取得
     const res = await fetch(url);
     if (!res || !res.ok) {
