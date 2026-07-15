@@ -28,6 +28,7 @@
 17. No.17: パスワードをハッシュ化して保存する
 18. No.18: const url = ''
 19. No.19: ログアウトした後にもトップページにあなたの健康データが出る
+20. No.20: どのアカウントでログインしても値が同じ
 
 ## No1. DB 接続情報 
 #### 症状
@@ -470,6 +471,195 @@ if文でセッションにユーザーが存在しているかの条件分を追
 
 #### 動作確認
 - トップページをログアウト状態で開くとあなたの健康データが表示されず、ログインした状態で開くと表示された
+
+---
+
+## No.20 どのアカウントでログインしても値が同じ
+#### 症状
+どのアカウントでログインしても、トップページのあなたの健康データの値が同じ
+
+#### 確認したファイル
+- `components/top/hero_right.php`
+
+#### 原因
+数字がそのまま書かれているから
+
+#### 修正内容
+DBから持ってきたデータを表示させた
+
+```php
+use Lib\Database;
+
+$userId = (int) $_SESSION['user']['id'];
+
+$pdo    = Database::getInstance();
+
+$sql = 'SELECT COALESCE(SUM(calories_burned), 0) AS today_calories 
+        FROM exercise_records 
+        WHERE user_id = :user_id AND exercise_date = CURRENT_DATE';
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([':user_id' => $userId]);
+
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$todayCalories = $row['today_calories'];
+
+
+$sql = 'SELECT sleep_duration_minutes, sleep_quality 
+        FROM sleep_records 
+        WHERE user_id = :user_id AND sleep_date = CURRENT_DATE 
+        LIMIT 1';
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([':user_id' => $userId]);
+
+$sleep = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($sleep) {
+    $totalMinutes = (int) $sleep['sleep_duration_minutes'];
+    $hours        = floor($totalMinutes / 60);
+    $minutes      = $totalMinutes % 60;
+} else {
+    $hours = "-";
+    $minutes = "-";
+}
+
+
+$sql = 'SELECT meal_type, food_name 
+        FROM meal_records 
+        WHERE user_id = :user_id AND meal_date = CURRENT_DATE 
+        ORDER BY id DESC 
+        LIMIT 1';
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([':user_id' => $userId]);
+
+$latestMeal = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$latestMeal) {
+    $latestMeal = [
+        'meal_type' => '-',
+        'food_name' => '-' 
+    ];
+}
+
+$mealLabels = [
+    'breakfast' => '朝食',
+    'lunch'     => '昼食',
+    'dinner'    => '夕食',
+    'snack'     => '間食',
+    '-'         => '-' 
+];
+```
+
+```html
+<p class="mb-1 text-xs font-medium opacity-80">今日のアクティビティ</p>
+<p class="text-4xl font-bold tracking-tight"><?= htmlentities($todayCalories) ?> Kcal</p>
+
+<p class="text-xs text-slate-400">睡眠時間</p>
+<p class="mt-1 text-lg font-bold text-slate-800"><?= htmlspecialchars($hours) ?><span class="text-sm font-medium">h</span> <?= htmlspecialchars($minutes) ?><span class="text-sm font-medium">m</span></p>
+
+<p class="text-xs text-slate-400">消費カロリー</p>
+<p class="mt-1 text-lg font-bold text-slate-800"><?= htmlspecialchars($todayCalories) ?><span class="text-smfont-medium">kcal</span></p>
+
+<p class="text-xs font-semibold text-slate-700"><?= htmlspecialchars($mealLabels[$latestMeal['meal_type']]) ?></p>
+<p class="text-xs text-slate-400"><?= htmlspecialchars($latestMeal['food_name']) ?></p>
+```
+
+#### 動作確認
+- データベースに登録した通りの内容が表示された
+
+---
+
+## No.
+#### 症状
+
+
+#### 確認したファイル
+- ``
+
+#### 原因
+
+
+#### 修正内容
+
+
+```php
+
+```
+
+#### 動作確認
+- 
+
+---
+
+## No.
+#### 症状
+
+
+#### 確認したファイル
+- ``
+
+#### 原因
+
+
+#### 修正内容
+
+
+```php
+
+```
+
+#### 動作確認
+- 
+
+---
+
+## No.
+#### 症状
+
+
+#### 確認したファイル
+- ``
+
+#### 原因
+
+
+#### 修正内容
+
+
+```php
+
+```
+
+#### 動作確認
+- 
+
+---
+
+## No.
+#### 症状
+
+
+#### 確認したファイル
+- ``
+
+#### 原因
+
+
+#### 修正内容
+
+
+```php
+
+```
+
+#### 動作確認
+- 
 
 ---
 

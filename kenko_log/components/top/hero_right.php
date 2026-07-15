@@ -1,3 +1,69 @@
+<?php
+use Lib\Database;
+
+$userId = (int) $_SESSION['user']['id'];
+$pdo    = Database::getInstance();
+
+$sql = 'SELECT COALESCE(SUM(calories_burned), 0) AS today_calories 
+        FROM exercise_records 
+        WHERE user_id = :user_id AND exercise_date = CURRENT_DATE';
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':user_id' => $userId]);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$todayCalories = $row['today_calories'];
+
+
+$sql = 'SELECT sleep_duration_minutes, sleep_quality 
+        FROM sleep_records 
+        WHERE user_id = :user_id AND sleep_date = CURRENT_DATE 
+        LIMIT 1';
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([':user_id' => $userId]);
+
+$sleep = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($sleep) {
+    $totalMinutes = (int) $sleep['sleep_duration_minutes'];
+    $hours        = floor($totalMinutes / 60);
+    $minutes      = $totalMinutes % 60;
+} else {
+    $hours = "-";
+    $minutes = "-";
+}
+
+
+$sql = 'SELECT meal_type, food_name 
+        FROM meal_records 
+        WHERE user_id = :user_id AND meal_date = CURRENT_DATE 
+        ORDER BY id DESC 
+        LIMIT 1';
+
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([':user_id' => $userId]);
+
+$latestMeal = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$latestMeal) {
+    $latestMeal = [
+        'meal_type' => '-',
+        'food_name' => '-' 
+    ];
+}
+
+$mealLabels = [
+    'breakfast' => '朝食',
+    'lunch'     => '昼食',
+    'dinner'    => '夕食',
+    'snack'     => '間食',
+    '-'         => '-' 
+];
+?>
+
 <div class="flex min-h-[520px] fade-up fade-up-2 md:min-h-full">
     <div class="relative flex w-full items-center p-6 md:justify-end md:p-10 lg:p-14">
         <!-- カード -->
@@ -12,7 +78,7 @@
             <!-- 歩数 -->
             <div class="mb-4 rounded-xl kenko-gradient p-4 text-white">
                 <p class="mb-1 text-xs font-medium opacity-80">今日のアクティビティ</p>
-                <p class="text-4xl font-bold tracking-tight">634 Kcal</p>
+                <p class="text-4xl font-bold tracking-tight"><?= htmlentities($todayCalories) ?> Kcal</p>
                 <p class="mt-1 text-xs opacity-70">目標 1,000 Kcal</p>
                 <div class="mt-3 h-1.5 w-full rounded-full bg-white/30">
                     <div class="h-1.5 rounded-full bg-white" style="width: 85%"></div>
@@ -23,11 +89,11 @@
             <div class="mb-4 grid grid-cols-2 gap-3">
                 <div class="rounded-xl bg-slate-50 p-3">
                     <p class="text-xs text-slate-400">睡眠時間</p>
-                    <p class="mt-1 text-lg font-bold text-slate-800">7<span class="text-sm font-medium">h</span> 15<span class="text-sm font-medium">m</span></p>
+                    <p class="mt-1 text-lg font-bold text-slate-800"><?= htmlspecialchars($hours) ?><span class="text-sm font-medium">h</span> <?= htmlspecialchars($minutes) ?><span class="text-sm font-medium">m</span></p>
                 </div>
                 <div class="rounded-xl bg-slate-50 p-3">
                     <p class="text-xs text-slate-400">消費カロリー</p>
-                    <p class="mt-1 text-lg font-bold text-slate-800">450<span class="text-sm font-medium">kcal</span></p>
+                    <p class="mt-1 text-lg font-bold text-slate-800"><?= htmlspecialchars($todayCalories) ?><span class="text-sm font-medium">kcal</span></p>
                 </div>
             </div>
 
@@ -39,8 +105,8 @@
                 <div class="flex items-center gap-3">
                     <div class="h-8 w-8 rounded-lg bg-amber-100 flex items-center justify-center text-base">🥣</div>
                     <div>
-                        <p class="text-xs font-semibold text-slate-700">朝食</p>
-                        <p class="text-xs text-slate-400">オートミール &amp; フルーツ</p>
+                        <p class="text-xs font-semibold text-slate-700"><?= htmlspecialchars($mealLabels[$latestMeal['meal_type']]) ?></p>
+                        <p class="text-xs text-slate-400"><?= htmlspecialchars($latestMeal['food_name']) ?></p>
                     </div>
                 </div>
             </div>
