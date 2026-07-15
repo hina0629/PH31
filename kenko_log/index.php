@@ -21,7 +21,9 @@ require_once 'app.php';
                 <?php include "components/top/hero_left.php" ?>
 
                 <!-- components/top/hero_right.php を表示 -->
-                <?php include "components/top/hero_right.php" ?>
+                <?php if (isset($_SESSION['user'])) { ?>
+                    <?php include "components/top/hero_right.php" ?>
+                <?php } ?>
 
             </div>
         </section>
