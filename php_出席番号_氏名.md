@@ -25,6 +25,7 @@
 14. No.14: 古い入力値の復元 
 15. No.15: Gemini API キー
 16. No.16: CSRF トークン
+17. No.17: パスワードをハッシュ化して保存する
 
 ## No1. DB 接続情報 
 #### 症状
@@ -402,25 +403,25 @@ const GEMINI_API_KEY = '自分のAPIキー';
 
 ---
 
-## No.
+## No.17 パスワードをハッシュ化して保存する
 #### 症状
-
+ユーザ登録で SQL エラーになる。
 
 #### 確認したファイル
-- ``
+- `register/store.php`
 
 #### 原因
-
+password_hash がないため 
 
 #### 修正内容
-
+パスワードをハッシュ化したものを`$posts['password_hash']`として保存した
 
 ```php
-
+$posts['password_hash'] = password_hash($posts['password'], PASSWORD_DEFAULT);
 ```
 
 #### 動作確認
-- 
+- ユーザー登録ができた
 
 ---
 

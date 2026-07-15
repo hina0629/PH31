@@ -87,7 +87,7 @@ function findUserByEmail(string $email): ?array
 function createUser(array $posts): void
 {
     // TODO: パスワードをハッシュ化して保存する
-    $posts['password_hash'] = "";
+    $posts['password_hash'] = password_hash($posts['password'], PASSWORD_DEFAULT);
 
     $pdo = Database::getInstance();
     $sql = 'INSERT INTO users (name, email, password_hash) 
