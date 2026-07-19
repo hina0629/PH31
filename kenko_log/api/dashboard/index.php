@@ -28,9 +28,35 @@ function fetchAll(PDO $pdo, string $sql, array $params = []): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// DBから target_calories をとってくる
+$userRow = fetchOne($pdo, 'SELECT target_calories FROM users WHERE id = :id', [':id' => $userId]);
+
+// ここで配列のキーを参照している（箱の中をいじっている）から null にならないように対策
+// null だとそもそも存在しないのにその中から特定のものを取り出そうとしているから怒られる
+// null だった場合、1000を入れてエラー回避
+$targetCalories = $userRow ? (int)$userRow['target_calories'] : 1000;
+// SQLで target_calories を単体で取り出しているのになぜ箱の中をいじる必要があるのか？
+// phpが受け取るデータはこうなる
+// [
+//     'target_calories' => 1000
+// ]
+// から、このままだと$data['user']の中身は
+// $data = [
+//     'user' => [
+//         'name' => 'テストユーザー', // セッションから
+//         'target_calories' => [ 
+//             'target_calories' => 1000 
+//         ]
+//     ]
+// ];
+// 二重になってしまう。だから $targetCalories に取り出された値（1000とか）を入れないといけない
+
 $data = [
     'status' => 'ok',
-    'user'   => ['name' => $_SESSION['user']['name']],
+    'user'   => [
+        'name' => $_SESSION['user']['name'],
+        'target_calories' => $targetCalories
+    ],
     'latest_health' => fetchOne(
         $pdo,
         'SELECT * FROM health_records WHERE user_id = :user_id ORDER BY recorded_at DESC LIMIT 1',

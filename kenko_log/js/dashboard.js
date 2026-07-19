@@ -34,6 +34,16 @@ function renderStats(data) {
     el('stat-sleep-sub').textContent = `睡眠品質 ${s?.sleep_quality ?? '-'} / 5`;
 
     el('dashboard-title').textContent = `${data.user.name}さんの健康ダッシュボード`;
+
+    // data.user: 送られてきたデータの中のユーザー情報
+    // data.user.target_calories: 目標消費カロリー
+    // この二つが未定義でないかを判別
+    // これだけ、data -> user -> target_calories と2階層になっているから if が必要
+    // api/dashboard から受け取ったデータを画面にセットする
+    if (data.user && data.user.target_calories !== undefined) {
+        // el(): document.getElementById
+        el('input-target-calories').value = data.user.target_calories;
+    }
 }
 
 function renderExercises(exercises) {
@@ -117,3 +127,36 @@ async function loadDashboard() {
 }
 
 loadDashboard();
+
+// 目標消費カロリーの保存処理
+el('btn-save-target').addEventListener('click', async () => {
+    const targetVal = el('input-target-calories').value;
+    const targetCalories = parseInt(targetVal);
+
+    if (isNaN(targetCalories) || targetCalories < 0) {
+        alert('正しい目標消費カロリーを入力してください。');
+        return;
+    }
+
+    try {
+        const response = await fetch('api/dashboard/update_target.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ target_calories: targetCalories })
+        });
+
+        if (!response.ok) throw new Error();
+
+        const resData = await response.json();
+        if (resData.status === 'ok') {
+            alert('目標消費カロリーを更新しました！');
+            loadDashboard();
+        } else {
+            alert(resData.message || '更新に失敗しました。');
+        }
+    } catch (e) {
+        alert('通信エラーが発生しました。');
+    }
+});

@@ -32,6 +32,24 @@ require_once '../app.php';
                 </a>
             </header>
 
+            <!-- 目標消費カロリー設定パネル -->
+            <div class="rounded-xl border border-orange-100 bg-white p-5 shadow-sm flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="h-10 w-10 rounded-lg bg-orange-50 flex items-center justify-center text-lg">🔥</div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-700">目標消費カロリー</h2>
+                        <p class="text-xs text-slate-400">現在設定されている1日の目標消費カロリーです</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="number" id="input-target-calories" class="w-28 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-bold text-slate-800 focus:border-orange-500 focus:bg-white focus:outline-none" min="0" placeholder="1000">
+                    <span class="text-sm font-bold text-slate-500">Kcal</span>
+                    <button id="btn-save-target" class="ml-2 inline-flex items-center justify-center rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-orange-600">
+                        目標を保存
+                    </button>
+                </div>
+            </div>
+
             <section class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                 <div class="rounded-xl border border-sky-100 bg-white p-6 shadow-sm">
                     <p class="text-sm font-semibold text-slate-500">最新体重</p>
