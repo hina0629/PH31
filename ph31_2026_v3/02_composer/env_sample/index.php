@@ -6,8 +6,8 @@ require_once dirname(__DIR__, 2) . '/bootstrap.php';
 use Dotenv\Dotenv;
 
 // TODO: .env ファイルから環境変数を読み込む
-// $dotenv = Dotenv::createImmutable(__DIR__);
-// $dotenv->load();
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // TODO: 環境変数を定数として定義 $_ENV を使用
 define('API_KEY', "");
