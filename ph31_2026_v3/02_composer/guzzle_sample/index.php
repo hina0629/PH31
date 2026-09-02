@@ -22,9 +22,9 @@ if ($username !== '') {
 
     try {
         // TODO: GET https://api.github.com/users/{username}
-        // $response = $client->get("users/{$username}", [
-        //     'headers' => ['Accept' => 'application/vnd.github+json'],
-        // ]);
+        $response = $client->get("users/{$username}", [
+            'headers' => ['Accept' => 'application/vnd.github+json'],
+        ]);
 
         // TODO:レスポンスボディ(JSON)を連想配列にデコード
         // $contents = $response->getBody()->getContents();
