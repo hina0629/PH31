@@ -14,10 +14,10 @@ $username = trim($_GET['username'] ?? 'octocat');
 
 if ($username !== '') {
     // TODO: Guzzle クライアントを生成
-    // $client = new Client([
-    //     'base_uri' => 'https://api.github.com/',
-    //     'timeout'  => 5.0,
-    // ]);
+    $client = new Client([
+        'base_uri' => 'https://api.github.com/',
+        'timeout'  => 5.0,
+    ]);
 
     try {
         // TODO: GET https://api.github.com/users/{username}
