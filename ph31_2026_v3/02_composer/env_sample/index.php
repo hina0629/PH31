@@ -1,9 +1,9 @@
 <?php
 // TODO: 共通の初期化ファイルを読み込む（Composer オートローダーなど）
-// require_once dirname(__DIR__, 2) . '/bootstrap.php';
+require_once dirname(__DIR__, 2) . '/bootstrap.php';
 
 // TODO: 環境変数を読み込むための Dotenv ライブラリを使用
-// use Dotenv\Dotenv;
+use Dotenv\Dotenv;
 
 // TODO: .env ファイルから環境変数を読み込む
 // $dotenv = Dotenv::createImmutable(__DIR__);
