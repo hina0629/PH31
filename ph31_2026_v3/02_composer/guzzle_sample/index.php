@@ -27,7 +27,7 @@ if ($username !== '') {
         ]);
 
         // TODO:レスポンスボディ(JSON)を連想配列にデコード
-        // $contents = $response->getBody()->getContents();
+        $contents = $response->getBody()->getContents();
         $user = json_decode($contents, true);
     } catch (GuzzleException $e) {
         // 404 やネットワークエラーなどをキャッチ
