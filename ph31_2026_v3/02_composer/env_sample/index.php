@@ -14,6 +14,7 @@ $dotenv->load();
 // TODO: 環境変数を定数として定義 $_ENV を使用
 // $_ENV のまま使うのは好ましくない
 // const では設定できない
+// define() 定数を設定する昔ながらのやり方
 define('API_KEY', $_ENV['API_KEY']);
 define('DB_HOST', $_ENV['DB_HOST']);
 define('DB_USER', $_ENV['DB_USER']);
