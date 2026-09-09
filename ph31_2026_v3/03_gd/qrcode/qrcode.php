@@ -1,4 +1,5 @@
 <?php
+// 2つ上のディレクトリ
 require '../vendor/autoload.php';
 
 // QRコード生成ライブラリの読み込み
@@ -20,17 +21,19 @@ if (!$text) {
 }
 
 // TODO: QRコード生成
-// $qrCode = new QrCode(
-//     data: $text,
-//     encoding: new Encoding('UTF-8'),
-//     size: $size,
-//     margin: $margin,
-// );
+$qrCode = new QrCode(
+    data: $text,
+    encoding: new Encoding('UTF-8'),
+    size: $size,
+    margin: $margin,
+);
 
 // TODO: PNGとして出力
-// $writer = new PngWriter();
-// $result = $writer->write($qrCode);
+$writer = new PngWriter();
+// $writer = new Endroid\QrCode\Writer\PngWriter();
+$result = $writer->write($qrCode);
 
 // TODO: 画像出力
-header('Content-Type: ');
-echo "ここで画像を出力処理します。";
+header('Content-Type: ' . $result->getMimeType());
+// 出来上がった画像を文字列で出力
+echo $result->getString();
