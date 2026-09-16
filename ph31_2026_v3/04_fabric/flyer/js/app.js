@@ -92,7 +92,7 @@ fontSizeInput.addEventListener('input', () => {
     const obj = canvas.getActiveObject();
     if (obj) {
         // TODO: Fabric.js を使って選択中のオブジェクトのフォントサイズを変更
-        // obj.set('fontSize', parseInt(fontSizeInput.value));
+        obj.set('fontSize', parseInt(fontSizeInput.value));
         // 再レンダリング
         canvas.renderAll();
     }
