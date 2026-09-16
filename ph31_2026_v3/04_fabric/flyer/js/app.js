@@ -58,10 +58,12 @@ function submitToPhp(mode) {
 }
 
 // デリートキーで選択中の要素を削除
+// window → タブ
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Delete' || e.key === 'Backspace') {
         if (canvas.getActiveObject() && !canvas.getActiveObject().isEditing) {
             // TODO: Fabric.js を使って選択中のオブジェクトを削除
+            canvas.remove(canvas.getActiveObject());
         }
     }
 });
