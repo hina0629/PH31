@@ -1,6 +1,8 @@
+<!-- 画像を生成する専門 -->
 <?php
 ini_set('display_errors', 0);
 // 1. config.phpを読み込む
+// 外部のPHPファイルを読み込んでいる
 require_once 'config.php';
 
 if (!isset($config)) die("config.phpが読み込まれていません。");
@@ -84,7 +86,7 @@ function drawText($image, $obj, $config)
     list($r, $g, $b) = sscanf($obj['fill'], "#%02x%02x%02x");
     // TODO: GD 用の色情報に変換: imagecolorallocate で色を作成する
     // 引数: $image, $r, $g, $b
-    $color = null;
+    $color = imagecolorallocate($image, $r, $g, $b);
 
     // TODO: GD でテキストを描画: imagettftext を使用
     // 引数: $image, $size, $angle, $x, $y, $color, $fontPath, $obj['text']
