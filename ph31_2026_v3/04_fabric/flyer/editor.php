@@ -7,7 +7,7 @@
     <title>チラシエディタ - Fabric.js & GD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- TODO: Fabric.js CDN インストール -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 </head>
 
 <body class="bg-slate-100 text-slate-800">
