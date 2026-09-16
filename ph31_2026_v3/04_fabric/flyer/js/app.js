@@ -10,15 +10,16 @@ const form = document.getElementById('exportForm');
 // テキスト追加関数
 function addText() {
     // TODO: Fabric.js を使ってテキストを追加
-    // const text = new fabric.IText('ここに入力', {
-    //     left: 100,
-    //     top: 100,
-    //     fontFamily: 'sans-serif',
-    //     fontSize: 40,
-    //     fill: '#333333'
-    // });
-    // canvas.add(text);
-    // canvas.setActiveObject(text);
+    // ブラウザにテキストが入力できる
+    const text = new fabric.IText('ここに入力', {
+        left: 100,
+        top: 100,
+        fontFamily: 'sans-serif',
+        fontSize: 40,
+        fill: '#333333'
+    });
+    canvas.add(text);
+    canvas.setActiveObject(text);
 }
 
 // 画像追加のハンドリング
