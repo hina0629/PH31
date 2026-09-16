@@ -29,11 +29,11 @@ function handleImage(e) {
     // ファイルが読み込まれたときの処理
     reader.onload = function (event) {
         // TODO: Fabric.js を使って画像をキャンバスに追加
-        // fabric.Image.fromURL(event.target.result, function (img) {
-        //     img.scaleToWidth(300);
-        //     canvas.add(img);
-        //     canvas.centerObject(img);
-        // });
+        fabric.Image.fromURL(event.target.result, function (img) {
+            img.scaleToWidth(300);
+            canvas.add(img);
+            canvas.centerObject(img);
+        });
     };
     // ファイルを読み込む
     reader.readAsDataURL(e.target.files[0]);
