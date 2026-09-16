@@ -1,5 +1,5 @@
 // TODO: キャンバスの初期化
-const canvas = null;
+const canvas = new fabric.Canvas('mainCanvas');
 
 // UI要素
 const fontSizeInput = document.getElementById('fontSizeInput');
