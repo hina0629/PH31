@@ -45,8 +45,8 @@ foreach ($data['objects'] as $obj) {
 // 5. 出力
 if ($mode === 'download') {
     // TODO: ダウンロード用のヘッダーを設定
-    // header('Content-Type: image/png');
-    // header('Content-Disposition: attachment; filename="flyer.png"');
+    header('Content-Type: image/png');
+    header('Content-Disposition: attachment; filename="flyer.png"');
 } else {
     // TODO: ブラウザで表示する場合のヘッダーを設定
     // header('Content-Type: image/png');
