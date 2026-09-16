@@ -19,6 +19,9 @@ if (!$data) {
     die("データが空です。キャンバスに要素を追加してください。");
 }
 
+// ファイル保存
+file_put_contents('canvas_data.json', $jsonData);
+
 // 3. キャンバスの作成
 // キャンバスのサイズ
 $width = $data['width'] ?? 600;
