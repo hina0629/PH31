@@ -104,7 +104,7 @@ colorInput.addEventListener('input', () => {
     const obj = canvas.getActiveObject();
     if (obj) {
         // TODO: Fabric.js を使って選択中のオブジェクトのカラーを変更
-        // obj.set('fill', colorInput.value);
+        obj.set('fill', colorInput.value);
 
         // 再レンダリング
         canvas.renderAll();
