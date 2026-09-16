@@ -53,7 +53,7 @@ if ($mode === 'download') {
 }
 
 // TODO: png形式で出力
-// imagepng($image);
+imagepng($image);
 
 // --- 描画補助関数 ---
 
