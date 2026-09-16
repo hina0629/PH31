@@ -49,7 +49,7 @@ if ($mode === 'download') {
     header('Content-Disposition: attachment; filename="flyer.png"');
 } else {
     // TODO: ブラウザで表示する場合のヘッダーを設定
-    // header('Content-Type: image/png');
+    header('Content-Type: image/png');
 }
 
 // TODO: png形式で出力
