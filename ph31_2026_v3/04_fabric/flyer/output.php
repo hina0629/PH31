@@ -90,6 +90,7 @@ function drawText($image, $obj, $config)
 
     // TODO: GD でテキストを描画: imagettftext を使用
     // 引数: $image, $size, $angle, $x, $y, $color, $fontPath, $obj['text']
+    imagettftext($image, $size, $angle, $x, $y, $color, $fontPath, $obj['text']);
 }
 
 function drawImage($image, $obj)
