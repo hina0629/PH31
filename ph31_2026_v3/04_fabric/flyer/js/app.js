@@ -42,7 +42,7 @@ function handleImage(e) {
 // PHPへJSONデータを送信する関数
 function submitToPhp(mode) {
     // TODO: キャンバス上の全データをJSON化: canvas.toJSON()
-    const json = JSON.stringify(canvas.toJSON());
+    const json = JSON.stringify(canvas.toJSON())
 
     // JSONデータを設定: input type=hidden
     document.getElementById('canvasDataInput').value = json;
