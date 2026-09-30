@@ -11,7 +11,7 @@ $config = [
 ];
 
 // TODO: Mpdf のインスタンス化
-$mpdf = null;
+$mpdf = new Mpdf($config);
 
 // HTMLを書き込み
 $html = '
