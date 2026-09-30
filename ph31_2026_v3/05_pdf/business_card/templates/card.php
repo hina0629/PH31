@@ -48,9 +48,9 @@ if (preg_match('/^data:image\/(?:png|jpe?g|gif|webp);base64,[a-zA-Z0-9+\/=\s]+$/
     <tr>
       <td class="info" colspan="2" style="color: <?= $color_info ?>">
         <!-- TODO: 連絡先情報 -->
-        <div><span>Email</span></div>
-        <div><span>Web</span></div>
-        <div><span>Tel</span></div>
+        <div><span>Email</span><?= businessCardText($email ?? '') ?></div>
+        <div><span>Web</span><?= businessCardText($web ?? '') ?></div>
+        <div><span>Tel</span><?= businessCardText($tel ?? '') ?></div>
       </td>
     </tr>
   </table>
