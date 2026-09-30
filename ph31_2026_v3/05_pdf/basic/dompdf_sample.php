@@ -26,6 +26,7 @@ $html = '
 ';
 
 // TODO: HTMLの読み込み: loadHtml()
+$dompdf->loadHtml($html);
 
 // TODO: 用紙サイズの設定: setPaper('A4', 'portrait') (A4サイズ・縦)
 
