@@ -23,3 +23,4 @@ $html = '
 $mpdf->WriteHtml($html);
 
 // TODO: ブラウザに表示: Output() (I: Inline, D: Download)
+$mpdf->Output('sample.pdf', 'I');
