@@ -1,8 +1,13 @@
 {
+    "config": {
+        "platform": {
+            "php": "8.2.32"
+        }
+    },
     "require": {
         "vlucas/phpdotenv": "^5.7",
-        "guzzlehttp/guzzle": "^8.1",
-        "endroid/qr-code": "^6.1",
+        "guzzlehttp/guzzle": "^7.8",
+        "endroid/qr-code": "^5.0",
         "dompdf/dompdf": "^3.1"
     }
 }
