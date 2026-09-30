@@ -32,5 +32,6 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 
 // TODO: PDFのレンダリング: render()
+$dompdf->render();
 
 // TODO: 出力（ブラウザで表示）: stream("sample.pdf", ["Attachment" => false])
