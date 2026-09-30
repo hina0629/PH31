@@ -121,7 +121,7 @@ $bg_y = 50;
         <div class="preview-canvas">
             <!-- TODO: プレビュー用の名刺カード -->
             <?php
-            // include 'templates/card.php';
+            include 'templates/card.php';
             ?>
         </div>
     </main>
