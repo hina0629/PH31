@@ -46,9 +46,9 @@ function update() {
     const bgY = document.getElementById('in_bg_y').value;
 
     // TODO: 背景画像のプレビューを更新
-    // setText('.name', name);
-    // setText('.title', title);
-    // setInfo(email, web, tel);
+    setText('.name', name);
+    setText('.title', title);
+    setInfo(email, web, tel);
 
     document.querySelector('.name').style.color = name_color;
     document.querySelector('.title').style.color = title_color;
