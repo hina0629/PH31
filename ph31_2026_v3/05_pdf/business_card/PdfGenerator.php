@@ -50,7 +50,7 @@ class PdfGenerator
     private function render($path, $data)
     {
         // TODO: 配列を展開して変数にする
-        // extract($data);
+        extract($data);
         // TODO: 出力バッファを開始
         // ob_start();
         include $path;
