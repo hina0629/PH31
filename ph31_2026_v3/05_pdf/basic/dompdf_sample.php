@@ -29,6 +29,7 @@ $html = '
 $dompdf->loadHtml($html);
 
 // TODO: 用紙サイズの設定: setPaper('A4', 'portrait') (A4サイズ・縦)
+$dompdf->setPaper('A4', 'portrait');
 
 // TODO: PDFのレンダリング: render()
 
