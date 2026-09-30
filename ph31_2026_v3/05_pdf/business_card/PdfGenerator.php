@@ -55,7 +55,7 @@ class PdfGenerator
         ob_start();
         include $path;
         // TODO: 出力バッファの内容を取得してクリーン: ob_get_clean()
-        $content = "";
+        $content = ob_get_clean();
         return $content;
     }
 }
