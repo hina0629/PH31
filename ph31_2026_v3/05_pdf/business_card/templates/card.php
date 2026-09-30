@@ -38,8 +38,8 @@ if (preg_match('/^data:image\/(?:png|jpe?g|gif|webp);base64,[a-zA-Z0-9+\/=\s]+$/
       <td class="card-accent" rowspan="2"></td>
       <td class="identity">
         <!-- TODO: 氏名と肩書き -->
-        <div class="name" style="color: <?= $color_name ?>"></div>
-        <div class="title" style="color: <?= $color_title ?>"></div>
+        <div class="name" style="color: <?= $color_name ?>"><?= businessCardText($name ?? '') ?></div>
+        <div class="title" style="color: <?= $color_title ?>"><?= businessCardText($title ?? '') ?></div>
       </td>
       <td class="brand-cell">
         <div class="brand-mark">BC</div>
