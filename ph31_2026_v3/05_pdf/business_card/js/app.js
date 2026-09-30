@@ -1,13 +1,13 @@
 function previewImage(input) {
     if (input.files && input.files[0]) {
         // TODO: ファイルが選択された場合、プレビュー用に読み込む
-        // const reader = new FileReader();
-        // reader.onload = function (e) {
-        //     const base64Data = e.target.result;
-        //     document.querySelector('.card').style.backgroundImage = `url('${base64Data}')`;
-        //     document.getElementById('bg_base64').value = base64Data;
-        // }
-        // reader.readAsDataURL(input.files[0]);
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const base64Data = e.target.result;
+            document.querySelector('.card').style.backgroundImage = `url('${base64Data}')`;
+            document.getElementById('bg_base64').value = base64Data;
+        }
+        reader.readAsDataURL(input.files[0]);
     }
 }
 
