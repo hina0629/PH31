@@ -52,7 +52,7 @@ class PdfGenerator
         // TODO: 配列を展開して変数にする
         extract($data);
         // TODO: 出力バッファを開始
-        // ob_start();
+        ob_start();
         include $path;
         // TODO: 出力バッファの内容を取得してクリーン: ob_get_clean()
         $content = "";
