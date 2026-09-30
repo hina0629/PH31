@@ -13,7 +13,7 @@ $options->set('defaultFont', 'sans-serif');
 $options->set('isHtml5ParserEnabled', true);
 
 // TODO: Dompdf インスタンス化
-$dompdf = null;
+$dompdf = new Dompdf($options);
 
 // HTMLコンテンツ
 $html = '
