@@ -20,5 +20,6 @@ $html = '
 ';
 
 // TODO: HTMLの書き込み: WriteHTML()
+$mpdf->WriteHtml($html);
 
 // TODO: ブラウザに表示: Output() (I: Inline, D: Download)
