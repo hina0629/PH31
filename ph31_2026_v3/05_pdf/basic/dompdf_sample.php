@@ -35,3 +35,4 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // TODO: 出力（ブラウザで表示）: stream("sample.pdf", ["Attachment" => false])
+$dompdf->stream("sample.pdf", ["Attachment" => false]);
