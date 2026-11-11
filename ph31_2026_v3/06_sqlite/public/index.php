@@ -76,6 +76,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="p-4">
                         <h3 class="font-semibold text-slate-900 truncate">
                             <!-- TODO: XSS 対策: htmlspecialchars() を使って $post['title'] を出力 -->
+                            <?= htmlspecialchars($post['title']) ?>
                         </h3>
                         <time class="block text-xs text-slate-400 mt-0.5">
                             <?= date("Y年m月d日 H:i", strtotime($post['created_at'])) ?>
@@ -83,6 +84,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php if (!empty($post['body'])): ?>
                             <p class="text-sm text-slate-600 mt-2 line-clamp-2">
                                 <!-- TODO: XSS 対策: htmlspecialchars() を使って $post['body'] を出力 -->
+                                <?= htmlspecialchars($post['body']) ?>
                             </p>
                         <?php endif; ?>
                     </div>
