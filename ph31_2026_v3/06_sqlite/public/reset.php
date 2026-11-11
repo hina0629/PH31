@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // テーブルを削除して再作成
 // TODO: テーブルを削除: DROP TABLE IF EXISTS notices を $pdo->exec() で実行
 $sql = "DROP TABLE IF EXISTS notices";
+$pdo->exec($sql);
 
 // テーブルを再作成: createTables() を呼ぶ
 createTables();
