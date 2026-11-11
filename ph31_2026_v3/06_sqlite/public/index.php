@@ -7,7 +7,7 @@ $sql = "SELECT * FROM notices ORDER BY created_at DESC LIMIT 20";
 // TODO: SQL を実行: query() メソッドを使用
 $stmt = $pdo->query($sql);
 // TODO: 全行を連想配列で取得: fetchAll(PDO::FETCH_ASSOC)
-$posts = [];
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
