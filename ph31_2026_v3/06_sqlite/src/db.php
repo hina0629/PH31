@@ -13,7 +13,7 @@ try {
     // TODO: sqlite: ファイルパスを指定して接続
     $schema = "sqlite" . $dbFile;
     // TODO: SQLite に接続: new PDO()
-    $pdo = null;
+    $pdo = new PDO($schema);
 
     // エラーを例外として扱う
     // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
