@@ -11,7 +11,7 @@ try {
     // ファイルが存在するかどうかを判定
     $newDb = !file_exists($dbFile);
     // TODO: sqlite: ファイルパスを指定して接続
-    $schema = "";
+    $schema = "sqlite" . $dbFile;
     // TODO: SQLite に接続: new PDO()
     $pdo = null;
 
