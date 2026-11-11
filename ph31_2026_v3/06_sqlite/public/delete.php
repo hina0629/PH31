@@ -30,7 +30,7 @@ $stmt->execute([$id]);
 $image = $stmt->fetchColumn();
 
 // TODO: レコード削除SQL
-$sql = "";
+$sql = "DELETE FROM notices WHERE id = ?";
 $pdo->prepare($sql)->execute([$id]);
 
 // TODO: 画像ファイルを削除（uploads/ 配下のみ）
