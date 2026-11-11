@@ -35,11 +35,11 @@ $pdo->prepare($sql)->execute([$id]);
 
 // TODO: 画像ファイルを削除（uploads/ 配下のみ）
 if (is_string($image) && $image !== "") {
-    // $uploadDir = realpath(__DIR__ . "/uploads");
-    // $file = realpath(__DIR__ . "/" . $image);
-    // if ($uploadDir !== false && $file !== false && str_starts_with($file, $uploadDir . DIRECTORY_SEPARATOR) && is_file($file)) {
-    //     unlink($file);
-    // }
+    $uploadDir = realpath(__DIR__ . "/uploads");
+    $file = realpath(__DIR__ . "/" . $image);
+    if ($uploadDir !== false && $file !== false && str_starts_with($file, $uploadDir . DIRECTORY_SEPARATOR) && is_file($file)) {
+        unlink($file);
+    }
 }
 
 header("Location: index.php?deleted=1");
