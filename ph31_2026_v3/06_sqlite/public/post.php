@@ -22,8 +22,8 @@ if (!is_dir($uploadDir)) {
 // 投稿処理
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // TODO: title と body を取得して trim(): $_POST['title'] ?? ""
-    $title = "";
-    $body  = "";
+    $title = trim($_POST['title'] ?? "");
+    $body  = trim($_POST['body'] ?? "");
     $imagePath = null;
 
     if (!empty($_FILES['image']['name'])) {
