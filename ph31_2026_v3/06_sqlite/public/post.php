@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $targetFile = $uploadDir . $fileName;
 
             // TODO: 一時ファイルを uploads へ移動: move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)
-            if (false) {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
                 $imagePath = "uploads/" . $fileName;
             } else {
                 $message = "⚠️ 画像アップロードに失敗しました。";
