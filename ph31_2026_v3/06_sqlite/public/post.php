@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (in_array($ext, $allowed)) {
             // 元のファイル名は使わず、UUID でユニークな名前にする
             // TODO: 保存名を作る: uuidv4() . "." . $ext
-            $fileName = "";
+            $fileName = uuidv4() . "." . $ext;
             $targetFile = $uploadDir . $fileName;
 
             // TODO: 一時ファイルを uploads へ移動: move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)
