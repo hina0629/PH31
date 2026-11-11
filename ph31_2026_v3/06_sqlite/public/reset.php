@@ -7,7 +7,7 @@ require_once __DIR__ . "/../src/db.php";
 
 // GET で開いた場合は誤操作防止のため何もしない
 // TODO: POST 以外ならトップへ戻す: $_SERVER['REQUEST_METHOD'] を使用
-if (false) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: index.php");
     exit;
 }
