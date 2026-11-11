@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($_FILES['image']['name'])) {
         // TODO: 元のファイル名から拡張子を小文字で取り出す: pathinfo() と PATHINFO_EXTENSION
-        $ext = "";
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
         $allowed = ['jpg','jpeg','png','gif'];
 
         if (in_array($ext, $allowed)) {
