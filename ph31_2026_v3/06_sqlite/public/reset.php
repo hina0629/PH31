@@ -14,7 +14,7 @@ if (false) {
 
 // テーブルを削除して再作成
 // TODO: テーブルを削除: DROP TABLE IF EXISTS notices を $pdo->exec() で実行
-$sql = "";
+$sql = "DROP TABLE IF EXISTS notices";
 
 // テーブルを再作成: createTables() を呼ぶ
 createTables();
