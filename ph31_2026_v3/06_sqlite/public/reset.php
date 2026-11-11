@@ -22,8 +22,9 @@ createTables();
 
 // アップロード画像を削除
 // TODO: uploads 内のファイルを glob() で取得して foreach で回し、unlink() で削除
-foreach ([] as $file) {
+foreach (glob(__DIR__ . "/uploads/*") as $file) {
     if (is_file($file)) {
+        unlink($file);
     }
 }
 
