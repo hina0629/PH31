@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($title !== "" || $imagePath !== null) { // タイトル or 画像があれば投稿可能
         // TODO: データベースに投稿を保存する SQL
-        $sql = "";
+        $sql = "INSERT INTO notices (title, body, image) VALUES (?, ?, ?)";
         // TODO: プレースホルダ付きの INSERT を準備: prepare()
         $stmt = null;
         // TODO: 値を渡して実行: execute([$title, $body, $imagePath])
