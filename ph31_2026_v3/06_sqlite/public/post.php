@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // TODO: プレースホルダ付きの INSERT を準備: prepare()
         $stmt = $pdo->prepare($sql);
         // TODO: 値を渡して実行: execute([$title, $body, $imagePath])
+        $stmt->execute([$title, $body, $imagePath]);
         $message = "✅ 投稿が完了しました！";
         header("Location: index.php?posted=1");
         exit;
