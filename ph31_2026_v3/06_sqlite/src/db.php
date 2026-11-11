@@ -39,4 +39,5 @@ function createTables()
             )";
 
     // TODO: SQL を実行: $pdo->exec() メソッドを使用
+    $pdo->exec($ddl);
 }
