@@ -11,12 +11,12 @@ try {
     // ファイルが存在するかどうかを判定
     $newDb = !file_exists($dbFile);
     // TODO: sqlite: ファイルパスを指定して接続
-    $schema = "sqlite" . $dbFile;
+    $schema = "sqlite:" . $dbFile;
     // TODO: SQLite に接続: new PDO()
     $pdo = new PDO($schema);
 
     // エラーを例外として扱う
-    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($newDb) {
         // 新規ファイルができたときにテーブルを初期化
