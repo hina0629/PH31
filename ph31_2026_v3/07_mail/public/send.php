@@ -1,5 +1,6 @@
 <?php
 // TODO: セッション開始
+session_start();
 
 // Contactクラス読み込み
 require __DIR__ . '/../src/Contact.php';
