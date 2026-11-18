@@ -40,7 +40,7 @@ class Contact
         // TODO: SMTPパスワード: MAIL_PASSWORD
         $this->password     = $_ENV['MAIL_PASSWORD'];
         // TODO: 暗号化方式: MAIL_ENCRYPTION
-        $this->encryption   = "";
+        $this->encryption   = $_ENV['MAIL_ENCRYPTION'];
         // TODO: ポート番号: MAIL_PORT
         $this->port         = 0;
 
