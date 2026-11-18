@@ -27,7 +27,7 @@ if ($error) {
 }
 
 // TODO: メール送信: send() : $name, $email, $body
-$result = false;
+$result = $contact->send($name, $email, $body);
 
 if ($result === true) {
     // TODO: 結果画面へリダイレクト: result.php
