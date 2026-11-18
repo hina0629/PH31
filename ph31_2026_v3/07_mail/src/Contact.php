@@ -56,15 +56,15 @@ class Contact
         $this->mailer->isSMTP();
         $this->mailer->SMTPAuth   = true;
         // TODO: SMTPサーバーの設定
-        $this->mailer->Host       = "";
+        $this->mailer->Host       = $this->host;
         // TODO: SMTPユーザー名の設定
-        $this->mailer->Username   = "";
+        $this->mailer->Username   = $this->username;
         // TODO: SMTPパスワードの設定
-        $this->mailer->Password   = "";
+        $this->mailer->Password   = $this->password;
         // TODO: 暗号化方式の設定
-        $this->mailer->SMTPSecure = "";
+        $this->mailer->SMTPSecure = $this->encryption;
         // TODO: ポート番号の設定
-        $this->mailer->Port       = 0;
+        $this->mailer->Port       = $this->port;
         $this->mailer->CharSet    = 'UTF-8';
         $this->mailer->Encoding   = 'base64';
     }
