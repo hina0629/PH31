@@ -2,9 +2,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // TODO: PHPMailer と Dotenv の名前空間をインポート
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-// use Dotenv\Dotenv;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
 class Contact
 {
