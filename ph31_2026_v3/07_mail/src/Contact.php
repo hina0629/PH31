@@ -32,7 +32,7 @@ class Contact
         // TODO: 送信元アドレス MAIL_FROM_ADDRESS
         $this->from_address = $_ENV['MAIL_FROM_ADDRESS'];
         // TODO: 送信元名前: MAIL_FROM_NAME
-        $this->from_name    = "";
+        $this->from_name    = $_ENV['MAIL_FROM_NAME'];
         // TODO: SMTPサーバー: MAIL_HOST
         $this->host         = "";
         // TODO: SMTPユーザー名: MAIL_USERNAME
