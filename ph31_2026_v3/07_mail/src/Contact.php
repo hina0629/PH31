@@ -34,7 +34,7 @@ class Contact
         // TODO: 送信元名前: MAIL_FROM_NAME
         $this->from_name    = $_ENV['MAIL_FROM_NAME'];
         // TODO: SMTPサーバー: MAIL_HOST
-        $this->host         = "";
+        $this->host         = $_ENV['MAIL_HOST'];
         // TODO: SMTPユーザー名: MAIL_USERNAME
         $this->username     = "";
         // TODO: SMTPパスワード: MAIL_PASSWORD
