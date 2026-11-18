@@ -119,7 +119,7 @@ class Contact
             // TODO: HTML形式を有効に: isHTML(true)
             $this->mailer->isHTML(true);
             // TODO: メールタイトル: Subject
-            $this->mailer->Subject = "";
+            $this->mailer->Subject = $this->subject;
             // TODO: メール本文: Body
             $this->mailer->Body = "";
 
