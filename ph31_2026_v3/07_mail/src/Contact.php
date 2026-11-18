@@ -38,7 +38,7 @@ class Contact
         // TODO: SMTPユーザー名: MAIL_USERNAME
         $this->username     = $_ENV['MAIL_USERNAME'];
         // TODO: SMTPパスワード: MAIL_PASSWORD
-        $this->password     = "";
+        $this->password     = $_ENV['MAIL_PASSWORD'];
         // TODO: 暗号化方式: MAIL_ENCRYPTION
         $this->encryption   = "";
         // TODO: ポート番号: MAIL_PORT
