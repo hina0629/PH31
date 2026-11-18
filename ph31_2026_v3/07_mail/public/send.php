@@ -31,6 +31,7 @@ $result = $contact->send($name, $email, $body);
 
 if ($result === true) {
     // TODO: 結果画面へリダイレクト: result.php
+    header("Location: ./result.php");
 } else {
     $_SESSION['error'] = "送信に失敗しました: {$result}";
     header("Location: ./");
