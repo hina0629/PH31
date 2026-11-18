@@ -125,6 +125,7 @@ class Contact
 
             // TODO: メール送信: send()
             // TODO: 送信成功したら true を返す
+            return $this->mailer->send();
         } catch (Exception $e) {
             return $this->mailer->ErrorInfo;
         }
