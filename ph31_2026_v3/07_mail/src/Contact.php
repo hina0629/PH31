@@ -121,7 +121,7 @@ class Contact
             // TODO: メールタイトル: Subject
             $this->mailer->Subject = $this->subject;
             // TODO: メール本文: Body
-            $this->mailer->Body = "";
+            $this->mailer->Body = $html;
 
             // TODO: メール送信: send()
             // TODO: 送信成功したら true を返す
