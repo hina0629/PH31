@@ -42,7 +42,7 @@ class Contact
         // TODO: 暗号化方式: MAIL_ENCRYPTION
         $this->encryption   = $_ENV['MAIL_ENCRYPTION'];
         // TODO: ポート番号: MAIL_PORT
-        $this->port         = 0;
+        $this->port         = (int)$_ENV['MAIL_PORT'];
 
         $this->setupMailer();
     }
