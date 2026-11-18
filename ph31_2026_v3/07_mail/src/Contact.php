@@ -111,6 +111,7 @@ class Contact
             ]);
 
             // TODO: 送信元アドレスと名前: setFrom(): from_address, from_name
+            $this->mailer->setFrom($this->from_address, $this->from_name);
             // TODO: 送信先アドレスと名前: addAddress(): email, name
             // TODO: 返信先アドレスと名前: addReplyTo(): from_address, from_name
             // TODO: HTML形式を有効に: isHTML(true)
