@@ -117,6 +117,7 @@ class Contact
             // TODO: 返信先アドレスと名前: addReplyTo(): from_address, from_name
             $this->mailer->addReplyTo($this->from_address, $this->from_name);
             // TODO: HTML形式を有効に: isHTML(true)
+            $this->mailer->isHTML(true);
             // TODO: メールタイトル: Subject
             $this->mailer->Subject = "";
             // TODO: メール本文: Body
