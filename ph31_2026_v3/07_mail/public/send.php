@@ -11,9 +11,9 @@ $email = $_POST['email'] ?? '';
 $body  = $_POST['body'] ?? '';
 
 // TODO: セッションデータ保存
-$_SESSION['name'];
-$_SESSION['email'];
-$_SESSION['body'];
+$_SESSION['name'] = $name;
+$_SESSION['email'] = $email;
+$_SESSION['body'] = $body;
 
 // Contactクラスのインスタンス化
 $contact = new Contact();
