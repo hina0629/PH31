@@ -6,9 +6,9 @@ session_start();
 require __DIR__ . '/../src/Contact.php';
 
 // TODO: POSTデータ受け取り
-$name  = "";
-$email = "";
-$body  = "";
+$name  = $_POST['name'] ?? '';
+$email = $_POST['email'] ?? '';
+$body  = $_POST['body'] ?? '';
 
 // TODO: セッションデータ保存
 $_SESSION['name'];
