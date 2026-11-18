@@ -30,7 +30,7 @@ class Contact
 
         // クラスメンバに $_ENV の値を代入
         // TODO: 送信元アドレス MAIL_FROM_ADDRESS
-        $this->from_address = "";
+        $this->from_address = $_ENV['MAIL_FROM_ADDRESS'];
         // TODO: 送信元名前: MAIL_FROM_NAME
         $this->from_name    = "";
         // TODO: SMTPサーバー: MAIL_HOST
